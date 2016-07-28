@@ -76,13 +76,13 @@ class DYApp
         if ($routes) {
             $str_route1 = "";
             foreach (preg_split("[-]", $routes) as $value) {
-                $str_route1.= ucfirst($value);
+                $str_route1 .= ucfirst($value);
             }
             $str_route2 = "";
             foreach (preg_split("[/]", $str_route1) as $value) {
-                $str_route2.= ucfirst($value)."/";
+                $str_route2 .= ucfirst($value) . "/";
             }
-            $routes = rtrim($str_route2,"/");
+            $routes = rtrim($str_route2, "/");
             $routesArray = explode("/", $routes);
             $num = count($routesArray);
             foreach ($routesArray as $value) {
@@ -115,13 +115,13 @@ class DYApp
 
         if ($routes) {
             $methodArray = explode("/", $routes);
-            if (method_exists($controller, "action".$methodArray[0])) {
-                $method = "action".$methodArray[0];
+            if (method_exists($controller, "action" . $methodArray[0])) {
+                $method = "action" . $methodArray[0];
             } else {
                 showErrors("Can't find the method!");
             }
         } else {
-            $method = "action".DEFAULT_METHOD;
+            $method = "action" . DEFAULT_METHOD;
         }
         $controller->$method();
     }

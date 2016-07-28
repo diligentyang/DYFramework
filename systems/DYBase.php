@@ -1,6 +1,6 @@
 <?php
 
-defined("ACCESS") or define("ACCESS",true);
+defined("ACCESS") or define("ACCESS", true);
 
 class DYBase
 {

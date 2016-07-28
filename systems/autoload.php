@@ -1,8 +1,9 @@
 <?php
 
-defined("ACCESS") or define("ACCESS",true);
-function loader($fileName){
-    $fileName = SYSTEMS_PATH.$fileName.".php";
+defined("ACCESS") or define("ACCESS", true);
+function loader($fileName)
+{
+    $fileName = SYSTEMS_PATH . $fileName . ".php";
 
     include_once($fileName);
 }
