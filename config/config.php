@@ -6,6 +6,6 @@
     //默认访问的控制器
     $config['defalut_controller'] = 'welcome';
     //默认访问的控制器的方法
-    $config['defalut_function'] = 'index';
+    $config['defalut_method'] = 'index';
     //是否自动开启session
     $config['auto_start_session'] = true;

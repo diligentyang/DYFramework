@@ -5,6 +5,8 @@
     $db['available'] = false;
     //数据库主机
     $db['host'] = "localhost";
+    //端口号
+    $db["port"] = "3306";
     //数据库用户名
     $db['username'] = "root";
     //数据库密码
