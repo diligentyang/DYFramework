@@ -13,3 +13,4 @@ require_once("../config/database.php");
 require_once("../systems/DYConstant.php");
 require_once("../systems/DYBASE.php");
 require_once("../systems/autoload.php");
+DYBase::init();

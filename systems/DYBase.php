@@ -9,7 +9,7 @@ class DYBase
     //class list
     static private $class;
 
-    function init()
+    static function init()
     {
         switch (ENVIRONMENT) {
             case "dev" :
@@ -27,6 +27,9 @@ class DYBase
             default :
                 exit("The application environment is not set correctly.");
         }
+
+        require_once("DYBaseFunction.php");
+
 
     }
 }
