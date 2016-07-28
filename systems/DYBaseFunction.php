@@ -27,11 +27,11 @@ function segment($a = 3)
     return $route[$a - 1];
 }
 
-function importFile($fileName)
+function importFile($filePath)
 {
-    $fileName = BASE_PATH . $fileName;
-    if (is_file($fileName)) {
-        include_once($fileName);
+    $filePath = BASE_PATH . $filePath;
+    if (is_file($filePath)) {
+        include_once($filePath);
     } else {
         showErrors("The File Path is not available!");
     }
