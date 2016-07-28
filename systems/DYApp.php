@@ -37,10 +37,21 @@ class DYApp
         }else{
             $controllerPath = "controllers/".DEFAULT_CONTROLLER.".php";
         }
-
+        //先默认，控制器没有多级文件夹，不使用strrpos确定的原因是，如果为多级文件，文件名和控制器名字相同，易出现bug
         importFile($controllerPath);
         $controller = new $controllerName();
-        $method = DEFAULT_METHOD;
+        $routes = substr($routes,strlen($controllerName)+1);
+        //如果$routes 为false，则说明URL中不含method
+        if($routes){
+            $methodArray = explode("/",$routes);
+            if(method_exists($controller,$methodArray[0])){
+                $method = $methodArray[0];
+            }else{
+                showErrors("Please check your method in your url!");
+            }
+        }else{
+            $method = DEFAULT_METHOD;
+        }
         $controller->$method();
 
     }
