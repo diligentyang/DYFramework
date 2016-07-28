@@ -1,9 +1,9 @@
 <?php
 class AdminWelcome{
 	
-	public function index()
+	public function actionindex()
 	{
-		echo "welcome to admin/AdminWelcome";
+		echo "Welcome to Admin/AdminWelcome";
 	}
 	
 }
