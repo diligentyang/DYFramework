@@ -82,7 +82,7 @@ class DYApp
             foreach (preg_split("[/]", $str_route1) as $value) {
                 $str_route2.= ucfirst($value)."/";
             }
-            $routes = $str_route2;
+            $routes = rtrim($str_route2,"/");
             $routesArray = explode("/", $routes);
             $num = count($routesArray);
             foreach ($routesArray as $value) {
@@ -112,6 +112,7 @@ class DYApp
         $controller = new $controllerName();
         $routes = substr($routes, strlen($controllerRoute) + 1);
         //如果$routes 为false，则说明URL中不含method
+
         if ($routes) {
             $methodArray = explode("/", $routes);
             if (method_exists($controller, "action".$methodArray[0])) {

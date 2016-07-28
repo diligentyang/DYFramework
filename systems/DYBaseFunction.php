@@ -13,6 +13,9 @@ function showErrors($error = "")
 function getRouteAll()
 {
     $route = $_SERVER['REQUEST_URI'];
+    if(!strpos($route,"index.php")){
+        $route .="index.php";
+    }
     $route = substr($route, strpos($route, "index.php") + 10);
     return $route;
 }
