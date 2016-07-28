@@ -32,7 +32,6 @@ class DYBase
         //load database
         include_once("DYDatabase.php");
 
-
         DYRun::run();
     }
 }

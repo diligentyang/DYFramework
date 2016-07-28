@@ -6,6 +6,9 @@ foreach($config as $value){
         exit("The application config is not set correctly");
     }
 }
+if($db['available'] !== false && $db['available'] !==true){
+    exit("database config avaliable must be true or flase");
+}
 
 //开发环境
 defined("ENVIRONMENT") or define("ENVIRONMENT",$config['environment']);

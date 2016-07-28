@@ -5,7 +5,18 @@ class DYDatabase
 {
     function __construct()
     {
-        echo("DYDatabse");
+        $this->createPDO();
+
+    }
+
+    function createPDO()
+    {
+        $db="";
+        include("../config/database.php");
+        foreach($db as $value){
+            
+        }
+
     }
 
     function query()
