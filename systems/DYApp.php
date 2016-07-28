@@ -18,6 +18,7 @@ class DYApp
     public function runController()
     {
         $routes = getRouteAll();
+        $controllerName="";
         if($routes){
             $routesArray = explode("/",$routes);
             foreach($routesArray as $value){
@@ -27,15 +28,20 @@ class DYApp
                     if(!is_file(BASE_PATH.$controllerPath)) {
                         continue;
                     }
+                    $controllerName = $value;
                     break;
                 }
+                $controllerName = $value;
                 break;
             }
         }else{
             $controllerPath = "controllers/".DEFAULT_CONTROLLER.".php";
         }
-        //$method = DEFAULT_METHOD;
+
         importFile($controllerPath);
+        $controller = new $controllerName();
+        $method = DEFAULT_METHOD;
+        $controller->$method();
 
     }
 
