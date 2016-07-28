@@ -8,4 +8,9 @@ Class TestModel
     {
         echo "TestModel";
     }
+
+    function testModelMethod()
+    {
+        echo "testModelMethod";
+    }
 }

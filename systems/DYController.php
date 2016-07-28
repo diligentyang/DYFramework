@@ -19,7 +19,8 @@ class DYController
         }
         $arr = explode("/",$model);
         $ModelName = $arr[count($arr)-1];
-        dd($ModelName);
-
+        include_once($ModelPath);
+        $ModelClass = new $ModelName();
+        return $ModelClass;
     }
 }

@@ -6,6 +6,11 @@ class Test extends DYController
 {
     function actionIndex()
     {
-        $this->model("TestModel");
+        $this->model("TestModel")->testModelMethod();
+    }
+
+    function actionArticle()
+    {
+        $this->model("Admin/AdminModel");
     }
 }
