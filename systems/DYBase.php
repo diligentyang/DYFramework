@@ -30,6 +30,7 @@ class DYBase
         //load base function
         include_once("DYBaseFunction.php");
         //load database
+        include_once("DYDatabase.php");
 
 
         DYRun::run();

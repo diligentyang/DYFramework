@@ -13,5 +13,6 @@ class Test extends DYController
     {
         $model=$this->model("Admin/AdminModel");
         $model->test();
+        $this->db()->query();
     }
 }

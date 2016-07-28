@@ -24,6 +24,11 @@ class DYController
         return $ModelClass;
     }
 
+    public function db()
+    {
+        return new DYDatabase();
+    }
+
     function __call($name, $arguments)
     {
         // TODO: Implement __call() method.
