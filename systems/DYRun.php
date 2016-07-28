@@ -6,7 +6,8 @@ class DYRun
 {
     static public function run()
     {
-        
+        $app = new DYApp();
+        $app->start();
     }
 
 }
