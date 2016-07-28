@@ -65,7 +65,38 @@ class DYDatabase
             default:
                 showErrors("SQLERROR: please check your second param!");
         }
+        return $res;
+    }
 
+    function bindquery($sql = "", $array, $mode = "array")
+    {
+        $sql = trim($sql);
+        if ($sql == "") {
+            showErrors("the mothe query neet at least one param!");
+        }
+        $query = $this->pdo->prepare($sql);
+        $query = $query->execute($array);
+        if (!query) {
+            showErrors("the sql string is false");
+        }
+        if (!strpos(strtolower($sql), "select")) {
+            return $query;
+        }
+
+        switch ($mode) {
+            case 'array' :
+                $res = $query->fetch(PDO::FETCH_ASSOC);
+                break;
+            case 'object' :
+                $res = $query->fetchObject();
+                break;
+            case 'count':
+                $res = $query->rowCount();
+                break;
+            default:
+                showErrors("SQLERROR: please check your second param!");
+        }
+        return $res;
 
     }
 }
