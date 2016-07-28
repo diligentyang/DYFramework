@@ -27,9 +27,11 @@ class DYBase
             default :
                 exit("The application environment is not set correctly.");
         }
+        //load base function
+        include_once("DYBaseFunction.php");
+        //load database
 
-        require_once("DYBaseFunction.php");
 
-
+        DYRun::run();
     }
 }
