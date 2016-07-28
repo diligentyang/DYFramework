@@ -3,9 +3,10 @@ defined('ACCESS') OR exit('No direct script access allowed');
 
 class DYDatabase
 {
+    public $pdo;
     function __construct()
     {
-        $this->createPDO();
+        $this->pdo=$this->createPDO();
 
     }
 
@@ -33,8 +34,7 @@ class DYDatabase
             echo '数据库连接失败'.$e->getMessage();
             exit();
         }
-
-
+        return $pdo;
     }
 
     function query()
