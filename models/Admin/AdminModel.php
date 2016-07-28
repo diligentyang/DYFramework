@@ -8,4 +8,9 @@ class AdminModel
     {
         echo "Admin/AdminModel";
     }
+
+    function test()
+    {
+        echo "AdminModel--test";
+    }
 }

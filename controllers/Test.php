@@ -11,6 +11,7 @@ class Test extends DYController
 
     function actionArticle()
     {
-        $this->model("Admin/AdminModel");
+        $model=$this->model("Admin/AdminModel");
+        $model->test();
     }
 }
