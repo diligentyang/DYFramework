@@ -2,7 +2,7 @@
 
 class Welcome
 {
-    public function index()
+    public function actionIndex()
     {
         echo "welcome to use DY Frame Work!";
     }

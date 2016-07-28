@@ -1,13 +1,13 @@
 <?php
 
-defined("ACCESS") or define("ACCESS",true);
+defined("ACCESS") or define("ACCESS", true);
 
 class DYApp
 {
     public function start()
     {
-        if(AUTO_START_SESSION){
-            if(!session_id()){
+        if (AUTO_START_SESSION) {
+            if (!session_id()) {
                 session_start();
             }
         }
@@ -71,21 +71,30 @@ class DYApp
     public function runController()
     {
         $routes = getRouteAll();
-        $controllerName="";
-        $controllerRoute="";
-        if($routes){
-            $routesArray = explode("/",$routes);
+        $controllerName = "";
+        $controllerRoute = "";
+        if ($routes) {
+            $str_route1 = "";
+            foreach (preg_split("[-]", $routes) as $value) {
+                $str_route1.= ucfirst($value);
+            }
+            $str_route2 = "";
+            foreach (preg_split("[/]", $str_route1) as $value) {
+                $str_route2.= ucfirst($value)."/";
+            }
+            $routes = $str_route2;
+            $routesArray = explode("/", $routes);
             $num = count($routesArray);
-            foreach($routesArray as $value){
+            foreach ($routesArray as $value) {
                 $num--;
-                if($controllerRoute==""){
+                if ($controllerRoute == "") {
                     $controllerRoute = $value;
-                }else{
-                    $controllerRoute.= "/".$value;
+                } else {
+                    $controllerRoute .= "/" . $value;
                 }
-                $controllerPath = "controllers/".$controllerRoute.".php";
-                if(!is_file(BASE_PATH.$controllerPath)){
-                    if($num==0){
+                $controllerPath = "controllers/" . $controllerRoute . ".php";
+                if (!is_file(BASE_PATH . $controllerPath)) {
+                    if ($num == 0) {
                         showErrors("Can't find the Controller!");
                     }
                     continue;
@@ -93,25 +102,25 @@ class DYApp
                 $controllerName = $value;
                 break;
             }
-        }else{
+        } else {
             $controllerName = DEFAULT_CONTROLLER;
             $controllerRoute = DEFAULT_CONTROLLER;
-            $controllerPath = "controllers/".DEFAULT_CONTROLLER.".php";
+            $controllerPath = "controllers/" . DEFAULT_CONTROLLER . ".php";
         }
         //先默认，控制器没有多级文件夹，不使用strrpos确定的原因是，如果为多级文件，文件名和控制器名字相同，易出现bug
         importFile($controllerPath);
         $controller = new $controllerName();
-        $routes = substr($routes,strlen($controllerRoute)+1);
+        $routes = substr($routes, strlen($controllerRoute) + 1);
         //如果$routes 为false，则说明URL中不含method
-        if($routes){
-            $methodArray = explode("/",$routes);
-            if(method_exists($controller,$methodArray[0])){
-                $method = $methodArray[0];
-            }else{
+        if ($routes) {
+            $methodArray = explode("/", $routes);
+            if (method_exists($controller, "action".$methodArray[0])) {
+                $method = "action".$methodArray[0];
+            } else {
                 showErrors("Can't find the method!");
             }
-        }else{
-            $method = DEFAULT_METHOD;
+        } else {
+            $method = "action".DEFAULT_METHOD;
         }
         $controller->$method();
     }
