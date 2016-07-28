@@ -6,6 +6,6 @@ class Test extends DYController
 {
     function actionIndex()
     {
-        echo "22";
+        $this->model("TestModel");
     }
 }
