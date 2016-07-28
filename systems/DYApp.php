@@ -21,11 +21,16 @@ class DYApp
         $controllerName="";
         if($routes){
             $routesArray = explode("/",$routes);
+            $num = count($routesArray);
             foreach($routesArray as $value){
+                $num--;
                 $controllerPath = "controllers/".lcfirst($value).".php";
                 if(!is_file(BASE_PATH.$controllerPath)){
                     $controllerPath = "controllers/".ucfirst($value).".php";
                     if(!is_file(BASE_PATH.$controllerPath)) {
+                        if($num==0){
+                            showErrors("Can't find the Controller!");
+                        }
                         continue;
                     }
                     $controllerName = $value;
@@ -35,6 +40,7 @@ class DYApp
                 break;
             }
         }else{
+            $controllerName = DEFAULT_CONTROLLER;
             $controllerPath = "controllers/".DEFAULT_CONTROLLER.".php";
         }
         //先默认，控制器没有多级文件夹，不使用strrpos确定的原因是，如果为多级文件，文件名和控制器名字相同，易出现bug
@@ -47,7 +53,7 @@ class DYApp
             if(method_exists($controller,$methodArray[0])){
                 $method = $methodArray[0];
             }else{
-                showErrors("Please check your method in your url!");
+                showErrors("Can't find the method!");
             }
         }else{
             $method = DEFAULT_METHOD;
