@@ -85,6 +85,10 @@ class Test extends DYController
         if($flag){
             echo($req->post("message"));
         }
+        echo "<br>";
+        //生成随机Token建议放到form中，可以通过session传递，最后判断一下token值是否正确
+        //方式csrf攻击
+        echo $req -> getToken();
         $this->view("request");
     }
 

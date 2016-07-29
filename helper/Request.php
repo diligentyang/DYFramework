@@ -34,4 +34,9 @@ class Request
         $name = $_GET[$name];
         return $xss===true?htmlspecialchars($name) : $name;
     }
+
+    public function getToken()
+    {
+        return substr(md5(uniqid(mt_rand(), true)),0,10);
+    }
 }
