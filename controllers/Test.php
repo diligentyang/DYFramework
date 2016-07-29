@@ -52,4 +52,13 @@ class Test extends DYController
     {
         $this->redirect("test/Index");
     }
+
+    //哈希密码
+    function actionPwd()
+    {
+        $hash = $this->generatePasswordHash("123456");
+        dd($hash);
+        //output: $2y$12$Zp83q70rweYxsi3ZyzDpY.NQYnfzNg6heZvs806SmsUmDhOWja53m
+    }
+
 }

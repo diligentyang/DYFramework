@@ -5,6 +5,7 @@ defined("ACCESS") or define("ACCESS", true);
 class DYController
 {
     static private $classes;
+
     function __construct()
     {
 
@@ -33,14 +34,14 @@ class DYController
     function helper($class)
     {
         loadClass("helper", $class);
-        if(is_array($class)){
-            foreach($class as $val){
+        if (is_array($class)) {
+            foreach ($class as $val) {
                 $$val = new $val();
                 if (!$this->getClass($val)) {
                     $this->setClass($val, $$val);
                 }
             }
-        }else {
+        } else {
             $$class = new $class();
             if (!$this->getClass($class)) {
                 $this->setClass($class, $$class);
@@ -72,8 +73,18 @@ class DYController
         header("Location: " . $uri, TRUE, $http_response_code);
     }
 
-    function setClass($class,$val){
-        if(!$this->getClass($class)){
+    public function generatePasswordHash($password, $cost = 12)
+    {
+        if (function_exists('password_hash')) {
+            return password_hash($password, PASSWORD_DEFAULT, ['cost' => $cost]);
+        }
+
+        $salt = $this->generateSalt($cost);
+    }
+
+    function setClass($class, $val)
+    {
+        if (!$this->getClass($class)) {
             self::$classes[$class] = $val;
         }
     }
