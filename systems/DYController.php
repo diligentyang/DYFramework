@@ -143,6 +143,24 @@ class DYController
             return password_verify($password, $hash);
         }
 
+        $test = crypt($password, $hash); //将用户输入的密码和哈希密码进行crypt()加密
+        $n = strlen($test);//获取字节长度
+        if ($n !== 60) {
+            return false;
+        }
+
+        return $this->compareString($test, $hash);//compareString慢比较，两个密码，并返回Boolean类型
+    }
+
+    //慢比较
+    function compareString($test, $hash){
+        $testLen = mb_strlen($test, '8bit');
+        $hashLen = mb_strlen($hash, '8bit');
+        $diff = $testLen ^ $hashLen;
+        for ($i = 0;$i<$testLen && $i<$hashLen; $i++){
+            $diff |= $test[$i] ^ $hash[$i];
+        }
+        return $diff === 0;
     }
 
     function setClass($class, $val)
