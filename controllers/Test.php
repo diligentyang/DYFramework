@@ -79,9 +79,12 @@ class Test extends DYController
     {
         $this->helper("Request");
         $req = new Request();
-//        $flag=$req -> isPost();
-        $flag=$req -> isGet();
+        $flag=$req -> isPost();
+//        $flag=$req -> isGet();
         var_dump($flag);
+        if($flag){
+            echo($req->post("message"));
+        }
         $this->view("request");
     }
 

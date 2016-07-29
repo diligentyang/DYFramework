@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1>this is view</h1>
-<form action="" method="get">
+<form action="" method="post">
     <input type="text" name="message">
     <input type="submit" value="提交">
 </form>

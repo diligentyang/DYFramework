@@ -11,8 +11,27 @@ class Request
 
     public function isGet()
     {
-        var_dump($_SERVER['HTTP_REFERER']);
         return $_SERVER['REQUEST_METHOD'] === 'GET' ? true : false;
     }
 
+    public function isAjax()
+    {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function post($name, $xss = true){
+        $name = $_POST[$name];
+        return $xss===true?htmlspecialchars($name) : $name;
+    }
+
+    public function get($name, $xss = true){
+        $name = $_GET[$name];
+        return $xss===true?htmlspecialchars($name) : $name;
+    }
 }
