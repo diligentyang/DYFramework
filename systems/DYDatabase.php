@@ -76,11 +76,11 @@ class DYDatabase
             showErrors("the mothe query neet at least one param!");
         }
         $query = $this->pdo->prepare($sql);
-        $query = $query->execute($array);
-        if (!query) {
+        $exec = $query->execute($array);
+        if (!$exec) {
             showErrors("the sql string is false");
         }
-        if (!strpos(strtolower($sql), "select")) {
+        if (strpos(strtolower($sql), "select") === false) {
             return $query;
         }
 
