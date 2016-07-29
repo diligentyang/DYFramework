@@ -61,4 +61,13 @@ class Test extends DYController
         //output: $2y$12$Zp83q70rweYxsi3ZyzDpY.NQYnfzNg6heZvs806SmsUmDhOWja53m
     }
 
+    //对比密码
+    function actionCheckPwd()
+    {
+        $post_pass = "123456";
+        $hash = $this->generatePasswordHash("123456");
+        $res=$this->validatePassword($post_pass,$hash);//返回Boolean类型
+        dd($res);
+    }
+
 }

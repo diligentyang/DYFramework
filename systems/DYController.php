@@ -72,7 +72,7 @@ class DYController
         $uri = BASE_URL . "index.php/" . $route;
         header("Location: " . $uri, TRUE, $http_response_code);
     }
-
+    //生成哈希密码
     public function generatePasswordHash($password, $cost = 12)
     {
         if (function_exists('password_hash')) {
@@ -80,6 +80,25 @@ class DYController
         }
 
         $salt = $this->generateSalt($cost);
+    }
+
+    //check 哈希密码
+    public function validatePassword($password, $hash)
+    {
+        if (!is_string($password) || $password === '') {
+            showErrors('Password must be a string and cannot be empty.');
+        }
+        if (!preg_match('/^\$2[axy]\$(\d\d)\$[\.\/0-9A-Za-z]{22}/', $hash, $matches)
+            || $matches[1] < 4
+            || $matches[1] > 30
+        ) {
+            showErrors('Hash is invalid.');
+        }
+
+        if (function_exists("password_verify")) {
+            return password_verify($password, $hash);
+        }
+
     }
 
     function setClass($class, $val)
