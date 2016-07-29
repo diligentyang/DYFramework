@@ -4,6 +4,7 @@ defined("ACCESS") or define("ACCESS", true);
 
 class DYController
 {
+    static private $classes;
     function __construct()
     {
 
@@ -32,6 +33,10 @@ class DYController
     function helper($class)
     {
         loadClass("helper", $class);
+        $$class = new $class();
+        if(!$this->getClass($class)){
+            $this->setClass($class,$$class);
+        }
     }
 
     function view($viewpath, $data = array())
@@ -50,6 +55,17 @@ class DYController
         } else {
             showErrors("Only .php|.html|.htm can be viewed and please check your view path");
         }
+    }
+
+    function setClass($class,$val){
+        if(!$this->getClass($class)){
+            self::$classes[$class] = $val;
+        }
+    }
+
+    function getClass($class)
+    {
+        return isset(self::$classes[$class]) ? self::$classes[$class] : null;
     }
 
     function __call($name, $arguments)

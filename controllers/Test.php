@@ -35,7 +35,7 @@ class Test extends DYController
 
     function actionPage()
     {
-        $page = new Page();
-        $page -> page_list();
+        dd($Page);
+       // $page -> page_list();
     }
 }
