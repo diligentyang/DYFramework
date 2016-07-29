@@ -80,6 +80,50 @@ class DYController
         }
 
         $salt = $this->generateSalt($cost);
+        $hash = crypt($password, $salt);
+        if (!is_string($hash) || strlen($hash) !== 60) {
+            showErrors('Unknown error occurred while generating hash.');
+        }
+
+        return $hash;
+    }
+
+    public function generateSalt($cost)
+    {
+        $cost = (int) $cost;
+        if ($cost < 4 || $cost > 31) {
+            showErrors('Cost must be between 4 and 31.');
+        }
+        // Get a 20-byte random string
+        $rand = $this->generateRandomKey(20);
+        // Form the prefix that specifies Blowfish (bcrypt) algorithm and cost parameter.
+        $salt = sprintf("$2y$%02d$", $cost);
+        // Append the random salt data in the required base64 format.
+        $salt .= str_replace('+', '.', substr(base64_encode($rand), 0, 22));
+
+        return $salt;
+    }
+
+    public function generateRandomKey($length){
+        if (!is_int($length)) {
+            showErrors('First parameter ($length) must be an integer');
+        }
+
+        if ($length < 1) {
+            showErrors('First parameter ($length) must be greater than 0');
+        }
+
+        // always use random_bytes() if it is available
+        if (function_exists('random_bytes')) {
+            return random_bytes($length);
+        }
+        if (function_exists('mcrypt_create_iv')) {
+            $key = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
+            if (mb_strlen($key, '8bit') === $length) {
+                return $key;
+            }
+        }
+        showErrors("Unable to generateRandomKey!");
     }
 
     //check 哈希密码
