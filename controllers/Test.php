@@ -56,7 +56,9 @@ class Test extends DYController
     //哈希密码
     function actionPwd()
     {
-        $hash = $this->generatePasswordHash("123456");
+        $this->helper("Password");
+        $pwd = new Password();
+        $hash = $pwd->generatePasswordHash("123456");
         dd($hash);
         //output: $2y$12$Zp83q70rweYxsi3ZyzDpY.NQYnfzNg6heZvs806SmsUmDhOWja53m
     }
@@ -64,9 +66,11 @@ class Test extends DYController
     //对比密码
     function actionCheckPwd()
     {
+        $this->helper("Password");
+        $pwd = new Password();
         $post_pass = "123456";
-        $hash = $this->generatePasswordHash("123456");
-        $res=$this->validatePassword($post_pass,$hash);//返回Boolean类型
+        $hash = $pwd->generatePasswordHash("123456");
+        $res=$pwd->validatePassword($post_pass,$hash);//返回Boolean类型
         dd($res);
     }
 
