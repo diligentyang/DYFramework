@@ -114,7 +114,10 @@ class DYApp
         //如果$routes 为false，则说明URL中不含method
 
         if ($routes) {
+            $f = strpos($routes,"?");
+            $routes = substr($routes,0,$f);
             $methodArray = explode("/", $routes);
+
             if (method_exists($controller, "action" . $methodArray[0])) {
                 $method = "action" . $methodArray[0];
             } else {

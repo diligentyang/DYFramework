@@ -74,4 +74,15 @@ class Test extends DYController
         dd($res);
     }
 
+    //请求处理
+    function actionReq()
+    {
+        $this->helper("Request");
+        $req = new Request();
+//        $flag=$req -> isPost();
+        $flag=$req -> isGet();
+        var_dump($flag);
+        $this->view("request");
+    }
+
 }
