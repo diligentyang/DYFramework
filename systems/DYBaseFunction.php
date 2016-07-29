@@ -40,3 +40,9 @@ function importFile($filePath)
     }
 }
 
+
+function loadClass($file, $class = array())
+{
+    echo "22";
+}
+

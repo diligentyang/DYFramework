@@ -6,7 +6,7 @@ class DYController
 {
     function __construct()
     {
-        echo "DYController";
+
     }
 
     static private $model = array();
@@ -29,6 +29,16 @@ class DYController
         return new DYDatabase();
     }
 
+    function helper($class = array())
+    {
+        loadClass("helper",$class);
+    }
+
+    function library($class = array())
+    {
+        loadClass("library",$class);
+    }
+
     function __call($name, $arguments)
     {
         // TODO: Implement __call() method.
@@ -36,4 +46,5 @@ class DYController
         var_dump($arguments);
         echo ")不存在！";
     }
+
 }
