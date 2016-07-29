@@ -12,6 +12,8 @@ class Test extends DYController
     function actionIndex()
     {
         $this->model("TestModel")->testModelMethod();
+        $data['admin'] = "123456";
+        $this->view("test",$data);
     }
 
     function actionArticle()
