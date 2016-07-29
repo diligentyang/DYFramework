@@ -28,6 +28,7 @@ class DYDatabase
         $host = $db['host'];
         $db_user = $db['username'];
         $db_pass = $db['password'];
+        $chaset = $db['charset'];
         $dsn = "mysql:dbname=$dbname;host=$host";
         try {
             $pdo = new PDO($dsn, $db_user, $db_pass);
@@ -35,6 +36,8 @@ class DYDatabase
             echo '数据库连接失败' . $e->getMessage();
             exit();
         }
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $pdo->exec("set name $chaset");
         return $pdo;
     }
 
