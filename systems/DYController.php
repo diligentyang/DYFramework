@@ -29,14 +29,9 @@ class DYController
         return new DYDatabase();
     }
 
-    function helper($class = array())
+    function helper($class)
     {
         loadClass("helper", $class);
-    }
-
-    function library($class = array())
-    {
-        loadClass("library", $class);
     }
 
     function view($viewpath, $data = array())

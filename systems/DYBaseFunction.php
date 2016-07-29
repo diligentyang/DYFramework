@@ -41,8 +41,17 @@ function importFile($filePath)
 }
 
 
-function loadClass($file, $class = array())
+function loadClass($file, $class)
 {
-    echo "22";
+    if(is_array($class)){
+
+    }else{
+        $filePath = BASE_PATH.$file.DS.$class.".php";
+        if(!is_file($filePath)){
+            showErrors("don't find $file.php in helper!");
+        }
+        include_once($filePath);
+    }
+
 }
 

@@ -7,6 +7,7 @@ class Test extends DYController
     function __construct()
     {
         parent::__construct();
+        $this->helper("Page");
     }
 
     function actionIndex()
@@ -30,5 +31,11 @@ class Test extends DYController
     function actionSeg()
     {
         echo segment(3);
+    }
+
+    function actionPage()
+    {
+        $page = new Page();
+        $page -> page_list();
     }
 }
