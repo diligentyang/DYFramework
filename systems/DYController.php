@@ -33,9 +33,18 @@ class DYController
     function helper($class)
     {
         loadClass("helper", $class);
-        $$class = new $class();
-        if(!$this->getClass($class)){
-            $this->setClass($class,$$class);
+        if(is_array($class)){
+            foreach($class as $val){
+                $$val = new $val();
+                if (!$this->getClass($val)) {
+                    $this->setClass($val, $$val);
+                }
+            }
+        }else {
+            $$class = new $class();
+            if (!$this->getClass($class)) {
+                $this->setClass($class, $$class);
+            }
         }
     }
 

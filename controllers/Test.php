@@ -35,7 +35,17 @@ class Test extends DYController
 
     function actionPage()
     {
-        dd($Page);
-       // $page -> page_list();
+        $page = new page();
+        $page -> page_list();
+    }
+
+    function actionArr()
+    {
+        $this->helper(array("Page1","Page2"));
+        $page1 = new Page1();
+        $page1->test1();
+        $page2 = new Page2();
+        $page2->test2();
+
     }
 }
