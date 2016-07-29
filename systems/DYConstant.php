@@ -27,5 +27,5 @@ defined("SYSTEMS_PATH") or define("SYSTEMS_PATH",dirname(__FILE__).DS);
 //项目名称
 defined("ITEM_NAME") or define("ITEM_NAME",explode(DS,dirname(__FILE__))[count(explode(DS,dirname(__FILE__)))-2] . DS);
 //项目url根地址对应的web目录
-defined("BASE_URL") or define("BASE_URL",'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
+defined("BASE_URL") or define("BASE_URL",'http://'.$_SERVER['SERVER_NAME'].substr($_SERVER['REQUEST_URI'],0,strpos($_SERVER['REQUEST_URI'],"web")+4));
 //用户自定义扩展目录

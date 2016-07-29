@@ -66,6 +66,12 @@ class DYController
         }
     }
 
+    function redirect($route, $http_response_code = 302)
+    {
+        $uri = BASE_URL . "index.php/" . $route;
+        header("Location: " . $uri, TRUE, $http_response_code);
+    }
+
     function setClass($class,$val){
         if(!$this->getClass($class)){
             self::$classes[$class] = $val;

@@ -46,6 +46,10 @@ class Test extends DYController
         $page1->test1();
         $page2 = new Page2();
         $page2->test2();
+    }
 
+    function actionRedirect()
+    {
+        $this->redirect("test/Index");
     }
 }
