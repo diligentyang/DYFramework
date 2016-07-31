@@ -31,7 +31,7 @@ class DYBase
         include_once("DYBaseFunction.php");
         //load database
         include_once("DYDatabase.php");
-
+        DYBase::setClass("DYDatabase", new DYDatabase());
         DYRun::run();
     }
 

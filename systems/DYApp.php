@@ -109,7 +109,7 @@ class DYApp
         }
         //先默认，控制器没有多级文件夹，不使用strrpos确定的原因是，如果为多级文件，文件名和控制器名字相同，易出现bug
         importFile($controllerPath);
-        if(class_exists($controllerName)) {
+        if (class_exists($controllerName)) {
             if (!DYbase::getClass($controllerName)) {
                 DYbase::setClass($controllerName, new $controllerName);
             }
@@ -131,8 +131,11 @@ class DYApp
             } else {
                 $method = "action" . DEFAULT_METHOD;
             }
-            $controller->$method();
+            return $controller->$method();
         }
+
+        showErrors("Run the method wrong!");
+        return false;
     }
 
 
