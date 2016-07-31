@@ -24,7 +24,7 @@ class Test extends DYController
         $res=$this->db()->query("select * from user");
         var_dump($res);
         //如果能查到东西，就返回查询结果数组，否则返回false
-        $res1 = $this->db()->bindquery("select * from user where username=? and password=?",array("admin","123456"));
+        $res1 = $this->db()->bindQuery("select * from user where username=? and password=?",array("admin","123456"));
         var_dump($res1);
     }
 

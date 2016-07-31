@@ -5,16 +5,24 @@ class DYDatabase
 {
     public $pdo;
 
+    /**
+     * DYDatabase constructor.
+     */
     function __construct()
     {
         $this->pdo = $this->createPDO();
 
     }
 
+    /**
+     * CreatePDO
+     *
+     * @return PDO
+     */
     function createPDO()
     {
-        $db = "";
-        include("../config/database.php");
+        $db = array();
+        include "../config/database.php";
         $count = 0;
         foreach ($db as $value) {
             if ($count === 0) {
@@ -41,6 +49,14 @@ class DYDatabase
         return $pdo;
     }
 
+    /**
+     * Execute SQL
+     *
+     * @param string $sql  Sql
+     * @param string $mode Mode
+     *
+     * @return mixed
+     */
     function query($sql = "", $mode = "array")
     {
         $sql = trim($sql);
@@ -57,22 +73,31 @@ class DYDatabase
         }
 
         switch ($mode) {
-            case 'array' :
-                $res = $query->fetch(PDO::FETCH_ASSOC);
-                break;
-            case 'object' :
-                $res = $query->fetchObject();
-                break;
-            case 'count':
-                $res = $query->rowCount();
-                break;
-            default:
-                showErrors("SQLERROR: please check your second param!");
+        case 'array' :
+            $res = $query->fetch(PDO::FETCH_ASSOC);
+            break;
+        case 'object' :
+            $res = $query->fetchObject();
+            break;
+        case 'count':
+            $res = $query->rowCount();
+            break;
+        default:
+            showErrors("SQLERROR: please check your second param!");
         }
         return $res;
     }
 
-    function bindquery($sql = "", $array, $mode = "array")
+    /**
+     * Binding Query
+     *
+     * @param string $sql   The Sql
+     * @param array  $array The param array
+     * @param string $mode  Mode
+     *
+     * @return mixed
+     */
+    function bindQuery($sql = "", $array=array(), $mode = "array")
     {
         $sql = trim($sql);
         if ($sql == "") {
@@ -88,17 +113,17 @@ class DYDatabase
         }
 
         switch ($mode) {
-            case 'array' :
-                $res = $query->fetch(PDO::FETCH_ASSOC);
-                break;
-            case 'object' :
-                $res = $query->fetchObject();
-                break;
-            case 'count':
-                $res = $query->rowCount();
-                break;
-            default:
-                showErrors("SQLERROR: please check your second param!");
+        case 'array' :
+            $res = $query->fetch(PDO::FETCH_ASSOC);
+            break;
+        case 'object' :
+            $res = $query->fetchObject();
+            break;
+        case 'count':
+            $res = $query->rowCount();
+            break;
+        default:
+            showErrors("SQLERROR: please check your second param!");
         }
         return $res;
 

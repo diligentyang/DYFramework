@@ -1,6 +1,20 @@
 <?php
+/**
+ * DYBaseFunction
+ * PHP version 5
+ *
+ * @author diligentyang <diligentyang@vip.qq.com>
+ * @link   https://github.com/diligentyang/DYFramework.git
+ */
 defined('ACCESS') OR exit('No direct script access allowed');
 
+/**
+ * Show errors
+ *
+ * @param string $error error message
+ *
+ * @return null
+ */
 function showErrors($error = "")
 {
     echo "<h2>" . $error . "<h2>";
@@ -59,8 +73,8 @@ function importFile($filePath)
 /**
  * Load class needed
  *
- * @param string       $file  filename
- * @param array|string $class classname
+ * @param string       $file  file name
+ * @param array|string $class class name
  *
  * @return null
  */

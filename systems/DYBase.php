@@ -66,7 +66,7 @@ class DYBase
     }
 
     /**
-     * To check the class is exist or not
+     * To check the class is exist or not and get the class if it is exist
      *
      * @param string $key classname
      *

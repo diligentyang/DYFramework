@@ -4,13 +4,24 @@ defined("ACCESS") or define("ACCESS", true);
 
 class DYController extends DYConModBase
 {
+
+    static private $_classes = array();
+
+    /**
+     * DYController constructor.
+     */
     function __construct()
     {
 
     }
 
-    static private $model = array();
-
+    /**
+     * Include Model
+     *
+     * @param string $model Model name
+     *
+     * @return mixed
+     */
     public function model($model)
     {
         $ModelPath = BASE_PATH . "models/" . str_replace("/", DS, $model) . ".php";
@@ -19,11 +30,22 @@ class DYController extends DYConModBase
         }
         $arr = explode("/", $model);
         $ModelName = $arr[count($arr) - 1];
-        include_once($ModelPath);
-        $ModelClass = new $ModelName();
+        include_once "$ModelPath";
+        if (!$this->getClass($ModelName)) {
+            $this->setClass($ModelName, new $ModelName);
+        }
+        $ModelClass = $this->getClass($ModelName);
         return $ModelClass;
     }
 
+    /**
+     * Include view
+     *
+     * @param string $viewpath View path
+     * @param array  $data     Data
+     *
+     * @return null
+     */
     function view($viewpath, $data = array())
     {
         foreach ($data as $key => $value) {
@@ -42,16 +64,31 @@ class DYController extends DYConModBase
         }
     }
 
+    /**
+     * Set class into $_classes
+     *
+     * @param string $class Model class name
+     * @param object $val   Model object
+     *
+     * @return null
+     */
     function setClass($class, $val)
     {
         if (!$this->getClass($class)) {
-            self::$classes[$class] = $val;
+            self::$_classes[$class] = $val;
         }
     }
 
+    /**
+     * Get Class or not
+     *
+     * @param string $class Class name
+     *
+     * @return mixed
+     */
     function getClass($class)
     {
-        return isset(self::$classes[$class]) ? self::$classes[$class] : null;
+        return isset(self::$_classes[$class]) ? self::$_classes[$class] : null;
     }
 
 }
