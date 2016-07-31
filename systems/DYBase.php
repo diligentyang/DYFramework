@@ -7,7 +7,7 @@ class DYBase
     //application list
     static private $application;
     //class list
-    static private $class;
+    static private $classmap;
 
     static function init()
     {
@@ -34,4 +34,16 @@ class DYBase
 
         DYRun::run();
     }
+
+    static function setClass($key, $value)
+    {
+        self::$classmap[$key] = $value;
+    }
+
+    static function getClass($key)
+    {
+        return isset(self::$classmap[$key]) ? self::$classmap[$key] : null;
+    }
+
+
 }
