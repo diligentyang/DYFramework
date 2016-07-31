@@ -68,6 +68,17 @@ class DYConModBase
     }
 
     /**
+     * Decode HTML entities
+     *
+     * @param $content string the content to be decoded
+     *
+     * @return string
+     */
+    public function htmlDecode($content)
+    {
+        return htmlspecialchars_decode($content, ENT_QUOTES);
+    }
+    /**
      * Magic method
      *
      * @param string $name      class name
