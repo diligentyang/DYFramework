@@ -8,7 +8,9 @@ function showErrors($error = "")
 }
 
 /**
- * @return string or false
+ * Get Route
+ *
+ * @return string|false
  */
 function getRouteAll()
 {
@@ -20,6 +22,13 @@ function getRouteAll()
     return $route;
 }
 
+/**
+ * Get uri segment
+ *
+ * @param int $a the position
+ *
+ * @return mixed
+ */
 function segment($a = 3)
 {
     $route = getRouteAll();
@@ -30,33 +39,47 @@ function segment($a = 3)
     return $route[$a - 1];
 }
 
+/**
+ * Import a php file
+ *
+ * @param string $filePath php file path
+ *
+ * @return null
+ */
 function importFile($filePath)
 {
     $filePath = BASE_PATH . $filePath;
     if (is_file($filePath)) {
-        include_once($filePath);
+        include_once "$filePath";
     } else {
         showErrors("The File Path is not available!");
     }
 }
 
-
+/**
+ * Load class needed
+ *
+ * @param string       $file  filename
+ * @param array|string $class classname
+ *
+ * @return null
+ */
 function loadClass($file, $class)
 {
-    if(is_array($class)){
-        foreach($class as $val){
-            $filePath = BASE_PATH.$file.DS.$val.".php";
-            if(!is_file($filePath)){
+    if (is_array($class)) {
+        foreach ($class as $val) {
+            $filePath = BASE_PATH . $file . DS . $val . ".php";
+            if (!is_file($filePath)) {
                 showErrors("don't find $val.php in helper!");
             }
-            include_once($filePath);
+            include_once "$filePath";
         }
-    }else{
-        $filePath = BASE_PATH.$file.DS.$class.".php";
-        if(!is_file($filePath)){
+    } else {
+        $filePath = BASE_PATH . $file . DS . $class . ".php";
+        if (!is_file($filePath)) {
             showErrors("don't find $file.php in helper!");
         }
-        include_once($filePath);
+        include_once "$filePath";
     }
 
 }
