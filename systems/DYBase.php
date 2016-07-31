@@ -45,5 +45,10 @@ class DYBase
         return isset(self::$classmap[$key]) ? self::$classmap[$key] : null;
     }
 
+    static function getAllClass()
+    {
+        return self::$classmap;
+    }
+
 
 }

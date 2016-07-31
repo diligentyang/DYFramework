@@ -109,26 +109,30 @@ class DYApp
         }
         //先默认，控制器没有多级文件夹，不使用strrpos确定的原因是，如果为多级文件，文件名和控制器名字相同，易出现bug
         importFile($controllerPath);
-        $controller = new $controllerName();
-        $routes = substr($routes, strlen($controllerRoute) + 1);
-        //如果$routes 为false，则说明URL中不含method
-
-        if ($routes) {
-            if (strpos($routes, "?")) {
-                $f = strpos($routes, "?");
-                $routes = substr($routes, 0, $f);
+        if(class_exists($controllerName)) {
+            if (!DYbase::getClass($controllerName)) {
+                DYbase::setClass($controllerName, new $controllerName);
             }
-            $methodArray = explode("/", $routes);
+            $controller = DYbase::getClass($controllerName);
+            $routes = substr($routes, strlen($controllerRoute) + 1);
+            //如果$routes 为false，则说明URL中不含method
+            if ($routes) {
+                if (strpos($routes, "?")) {
+                    $f = strpos($routes, "?");
+                    $routes = substr($routes, 0, $f);
+                }
+                $methodArray = explode("/", $routes);
 
-            if (method_exists($controller, "action" . $methodArray[0])) {
-                $method = "action" . $methodArray[0];
+                if (method_exists($controller, "action" . $methodArray[0])) {
+                    $method = "action" . $methodArray[0];
+                } else {
+                    showErrors("Can't find the method!");
+                }
             } else {
-                showErrors("Can't find the method!");
+                $method = "action" . DEFAULT_METHOD;
             }
-        } else {
-            $method = "action" . DEFAULT_METHOD;
+            $controller->$method();
         }
-        $controller->$method();
     }
 
 
