@@ -2,11 +2,11 @@
 
 defined("ACCESS") or define("ACCESS", true);
 
-Class TestModel
+Class TestModel extends DYModel
 {
     function __construct()
     {
-        echo "TestModel";
+
     }
 
     function testModelMethod()
