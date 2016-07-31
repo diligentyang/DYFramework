@@ -54,6 +54,20 @@ class DYConModBase
     }
 
     /**
+     * Encodes special characters into HTML entities.
+     *
+     * @param  string    $content      the content to be encoded
+     * @param  bool|true $doubleEncode boolean $doubleEncode whether to encode HTML entities in `$content`. If false,
+     * HTML entities in `$content` will not be further encoded.
+     *
+     * @return string
+     */
+    public function htmlEncode($content, $doubleEncode = true)
+    {
+        return htmlspecialchars($content, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', $doubleEncode);
+    }
+
+    /**
      * Magic method
      *
      * @param string $name      class name
