@@ -12,5 +12,7 @@ Class TestModel extends DYModel
     function testModelMethod()
     {
         echo "testModelMethod";
+        $res=$this->db()->query("select * from user");
+        return $res;
     }
 }
