@@ -1,6 +1,7 @@
 
 	config 配置文件
 	controllers 控制器
+	helper 用户扩展目录
 	models 模型
 	systems 框架核心文件
 	views 视图
