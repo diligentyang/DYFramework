@@ -4,6 +4,7 @@ defined("ACCESS") or define("ACCESS", true);
 
 class DYConModBase
 {
+
     /**
      * Get DYDatabase
      *
@@ -77,30 +78,6 @@ class DYConModBase
     public function htmlDecode($content)
     {
         return htmlspecialchars_decode($content, ENT_QUOTES);
-    }
-
-    /**
-     * Get base url
-     *
-     * @param string route url
-     *
-     * @return string
-     */
-    public function base_url($route = "")
-    {
-        return $route == "" ? BASE_URL : BASE_URL . $route;
-    }
-
-    /**
-     * Get site url
-     *
-     * @param string route url
-     *
-     * @return string
-     */
-    public function site_url($route = "")
-    {
-        return $route == "" ? SITE_URL : SITE_URL . $route;
     }
 
     /**

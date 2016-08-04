@@ -95,6 +95,30 @@ function loadClass($file, $class)
         }
         include_once "$filePath";
     }
-
 }
+
+/**
+ * Get base url
+ *
+ * @param string route url
+ *
+ * @return string
+ */
+function base_url($route = "")
+{
+    return $route == "" ? BASE_URL : BASE_URL . $route;
+}
+
+/**
+ * Get site url
+ *
+ * @param string route url
+ *
+ * @return string
+ */
+function site_url($route = "")
+{
+    return $route == "" ? SITE_URL : SITE_URL . $route;
+}
+
 
