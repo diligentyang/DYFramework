@@ -70,7 +70,7 @@ class DYConModBase
     /**
      * Decode HTML entities
      *
-     * @param $content string the content to be decoded
+     * @param string $content the content to be decoded
      *
      * @return string
      */
@@ -82,6 +82,8 @@ class DYConModBase
     /**
      * Get base url
      *
+     * @param string route url
+     *
      * @return string
      */
     public function base_url($route = "")
@@ -91,6 +93,8 @@ class DYConModBase
 
     /**
      * Get site url
+     *
+     * @param string route url
      *
      * @return string
      */
