@@ -78,6 +78,23 @@ class DYConModBase
     {
         return htmlspecialchars_decode($content, ENT_QUOTES);
     }
+
+    /**
+     * Get base url
+     *
+     * @return string
+     */
+    public function base_url()
+    {
+        return BASE_URL;
+    }
+
+
+    public function site_url()
+    {
+
+    }
+
     /**
      * Magic method
      *
