@@ -42,8 +42,8 @@ class DYConModBase
     /**
      * Redirect
      *
-     * @param string $route              uri route
-     * @param int    $http_response_code code
+     * @param string $route uri route
+     * @param int $http_response_code code
      *
      * @return null
      */
@@ -56,7 +56,7 @@ class DYConModBase
     /**
      * Encodes special characters into HTML entities.
      *
-     * @param  string    $content      the content to be encoded
+     * @param  string $content the content to be encoded
      * @param  bool|true $doubleEncode boolean $doubleEncode whether to encode HTML entities in `$content`. If false,
      * HTML entities in `$content` will not be further encoded.
      *
@@ -84,22 +84,26 @@ class DYConModBase
      *
      * @return string
      */
-    public function base_url()
+    public function base_url($route = "")
     {
-        return BASE_URL;
+        return $route == "" ? BASE_URL : BASE_URL . $route;
     }
 
-
-    public function site_url()
+    /**
+     * Get site url
+     *
+     * @return string
+     */
+    public function site_url($route = "")
     {
-
+        return $route == "" ? SITE_URL : SITE_URL . $route;
     }
 
     /**
      * Magic method
      *
-     * @param string $name      class name
-     * @param mixed  $arguments Info
+     * @param string $name class name
+     * @param mixed $arguments Info
      *
      * @return null|object
      */
