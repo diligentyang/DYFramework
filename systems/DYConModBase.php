@@ -81,6 +81,22 @@ class DYConModBase
     }
 
     /**
+     * Get post data by name
+     *
+     * @param string    $name   the name you want to post
+     * @param bool|true $decode htmlDecode or not
+     *
+     * @return string
+     */
+    public function getPost($name, $decode = true)
+    {
+        if(isset($_POST[$name])){
+            return $decode ? $this->htmlDecode($name) : $_POST[$name];
+        }else{
+            showErrors("Don't exist $name please check your data");
+        }
+    }
+    /**
      * Magic method
      *
      * @param string $name class name
