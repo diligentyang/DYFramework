@@ -83,19 +83,38 @@ class DYConModBase
     /**
      * Get post data by name
      *
-     * @param string    $name   the name you want to post
+     * @param string $name the name you want to post
      * @param bool|true $decode htmlDecode or not
      *
      * @return string
      */
     public function getPost($name, $decode = true)
     {
-        if(isset($_POST[$name])){
+        if (isset($_POST[$name])) {
             return $decode ? $this->htmlDecode($name) : $_POST[$name];
-        }else{
+        } else {
             showErrors("Don't exist $name please check your data");
         }
     }
+
+    /**
+     * Set session with key and value
+     *
+     * @param string $key The session key
+     * @param string $val The value of the session
+     * 
+     * @return bool
+     */
+    public function setSession($key, $val = "")
+    {
+        if (isset($key)) {
+            $_SESSION[$key] = $val;
+            return true;
+        }
+        showErrors("The method setSession need at lest one param!");
+        return false;
+    }
+
     /**
      * Magic method
      *

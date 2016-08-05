@@ -92,4 +92,9 @@ class Test extends DYController
         $this->view("request");
     }
 
+    function actionSession()
+    {
+        $this->setSession("admin");
+    }
+
 }
