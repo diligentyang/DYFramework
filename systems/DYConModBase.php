@@ -102,7 +102,7 @@ class DYConModBase
      *
      * @param string $key The session key
      * @param string $val The value of the session
-     * 
+     *
      * @return bool
      */
     public function setSession($key, $val = "")
@@ -113,6 +113,11 @@ class DYConModBase
         }
         showErrors("The method setSession need at lest one param!");
         return false;
+    }
+
+    public function getSession($key)
+    {
+        return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
     }
 
     /**

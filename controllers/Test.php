@@ -94,7 +94,10 @@ class Test extends DYController
 
     function actionSession()
     {
-        $this->setSession("admin");
+        if($this->setSession("admin", 'username')){
+            echo "session 传入成功<br>";
+        }
+        echo $this->getSession("admin");
     }
 
 }
