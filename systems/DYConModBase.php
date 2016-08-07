@@ -115,9 +115,34 @@ class DYConModBase
         return false;
     }
 
+    /**
+     * Get session
+     *
+     * @param string $key the key of session
+     *
+     * @return null
+     */
     public function getSession($key)
     {
         return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
+    }
+
+    /**
+     * Set flash session
+     *
+     * @param string $key the session key
+     * @param string $val the session value
+     * 
+     * @return bool
+     */
+    public function setFlash($key, $val = "")
+    {
+        if (isset($key)) {
+            $_SESSION[$key] = $val;
+            return true;
+        }
+        showErrors("The method setFlash need at lest one param!");
+        return false;
     }
 
     /**
