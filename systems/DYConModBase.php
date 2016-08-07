@@ -132,7 +132,7 @@ class DYConModBase
      *
      * @param string $key the session key
      * @param string $val the session value
-     * 
+     *
      * @return bool
      */
     public function setFlash($key, $val = "")
@@ -143,6 +143,24 @@ class DYConModBase
         }
         showErrors("The method setFlash need at lest one param!");
         return false;
+    }
+
+    /**
+     * Get flash session
+     *
+     * @param string $key the key of flash session
+     *
+     * @return mixed
+     */
+    public function getFlash($key)
+    {
+        if (isset($_SESSION[$key])) {
+            $flash = $_SESSION[$key];
+            unset($_SESSION[$key]);
+            return $flash;
+        } else {
+            return null;
+        }
     }
 
     /**
