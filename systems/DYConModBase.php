@@ -108,7 +108,7 @@ class DYConModBase
     public function setSession($key, $val = "")
     {
         if (isset($key)) {
-            $_SESSION[$key] = $val;
+            $_SESSION[$key] = trim($val);
             return true;
         }
         showErrors("The method setSession need at lest one param!");
@@ -138,7 +138,7 @@ class DYConModBase
     public function setFlash($key, $val = "")
     {
         if (isset($key)) {
-            $_SESSION[$key] = $val;
+            $_SESSION[$key] = trim($val);
             return true;
         }
         showErrors("The method setFlash need at lest one param!");
