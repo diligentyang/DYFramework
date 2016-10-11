@@ -45,7 +45,7 @@ class DYDatabase
             exit();
         }
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $pdo->exec("set name $chaset");
+        $pdo->exec("set names $chaset");
         return $pdo;
     }
 
