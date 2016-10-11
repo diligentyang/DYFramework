@@ -74,7 +74,7 @@ class DYDatabase
 
         switch ($mode) {
         case 'array' :
-            $res = $query->fetch(PDO::FETCH_ASSOC);
+            $res = $query->fetchAll(PDO::FETCH_ASSOC);
             break;
         case 'object' :
             $res = $query->fetchObject();
@@ -114,7 +114,7 @@ class DYDatabase
 
         switch ($mode) {
         case 'array' :
-            $res = $query->fetch(PDO::FETCH_ASSOC);
+            $res = $query->fetchAll(PDO::FETCH_ASSOC);
             break;
         case 'object' :
             $res = $query->fetchObject();
