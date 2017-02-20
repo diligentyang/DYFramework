@@ -12,6 +12,6 @@
     //数据库密码
     $db['password'] = "905407339";
     //用到的数据库
-    $db['database'] = "admin";
+    $db['database'] = "test";
     //数据库编码
     $db['charset'] = "UTF8";
