@@ -34,4 +34,3 @@ require_once "../systems/Autoload.php";
 spl_autoload_register('\systems\Autoload::loader');
 
 systems\DYBase::init();
-//DYBase::init();

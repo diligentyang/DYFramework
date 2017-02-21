@@ -9,7 +9,7 @@ namespace systems;
  *
  */
 
-defined("ACCESS") or define("ACCESS", true);
+defined('ACCESS') OR exit('No direct script access allowed');
 
 /**
  * Class DYBase
@@ -29,8 +29,7 @@ class DYBase
      */
     static function init()
     {
-        echo "222222";
-        /*switch (ENVIRONMENT) {
+        switch (ENVIRONMENT) {
         case "dev" :
                 error_reporting(-1);
                 ini_set('display_errors', 1);
@@ -46,12 +45,8 @@ class DYBase
         default :
             exit("The application environment is not set correctly.");
         }
-        //load base function
-        include_once "DYBaseFunction.php";
-        //load database
-        include_once "DYDatabase.php";
-        DYBase::setClass("DYDatabase", new DYDatabase());
-        DYRun::run();*/
+
+        DYRun::run();
     }
 
     /**

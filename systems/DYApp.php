@@ -1,5 +1,5 @@
 <?php
-
+namespace systems;
 defined("ACCESS") or define("ACCESS", true);
 
 class DYApp
