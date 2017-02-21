@@ -1,4 +1,5 @@
 <?php
+namespace systems;
 /**
  * DYFrameword DYBase
  * PHP version 5
@@ -8,7 +9,7 @@
  *
  */
 
-defined("ACCESS") or define("ACCESS", true);
+defined('ACCESS') OR exit('No direct script access allowed');
 
 /**
  * Class DYBase
@@ -44,11 +45,7 @@ class DYBase
         default :
             exit("The application environment is not set correctly.");
         }
-        //load base function
-        include_once "DYBaseFunction.php";
-        //load database
-        include_once "DYDatabase.php";
-        DYBase::setClass("DYDatabase", new DYDatabase());
+
         DYRun::run();
     }
 

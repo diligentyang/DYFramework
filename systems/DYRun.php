@@ -1,6 +1,6 @@
 <?php
-
-defined("ACCESS") or define("ACCESS", true);
+namespace systems;
+defined('ACCESS') OR exit('No direct script access allowed');
 
 class DYRun
 {
@@ -11,8 +11,8 @@ class DYRun
      */
     static public function run()
     {
-        $app = new DYApp();
-        $app->start();
+        //$route = Factory::GetRoute();
+        Factory::GetDYApp()->start();
     }
 
 }
