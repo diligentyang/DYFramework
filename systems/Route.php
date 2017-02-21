@@ -4,16 +4,21 @@ namespace systems;
 defined('ACCESS') OR exit('No direct script access allowed');
 
 class Route{
-    public $module;
     public $controller;
     public $method;
     function __construct()
     {
         $routes = $this->GetFormatUrl();
         $this->controller = $this->GetController($routes);
+        $this->method = $this->GetMethod($routes, $this->controller);
     }
 
-    function GetFormatUrl()
+    /**
+     * 获取格式化的路由，包括控制器+方法+参数
+     *
+     * @return string
+     */
+    private function GetFormatUrl()
     {
         $routes = $_SERVER['REQUEST_URI'];
         if (!strpos($routes, "index.php")) {
@@ -35,7 +40,13 @@ class Route{
         }
     }
 
-    function GetController($routes)
+    /**
+     * 获取控制器的名称包括包含其的文件夹。
+     *
+     * @param $routes
+     * @return string
+     */
+    private function GetController($routes)
     {
         $controllerRoute = "";
         $routesArray = explode("/", $routes);
@@ -60,36 +71,20 @@ class Route{
         return $controllerRoute;
     }
 
-    function GetMethod()
+    /**
+     * 获取控制器中的方法名称 action
+     *
+     * @param $routes 格式化后的路由
+     * @param $controllerName 控制器名字
+     * @return string
+     */
+    private function GetMethod($routes,$controllerName)
     {
-        //先默认，控制器没有多级文件夹，不使用strrpos确定的原因是，如果为多级文件，文件名和控制器名字相同，易出现bug
-        DYBaseFunc::importFile($controllerPath);
-        if (class_exists($controllerName)) {
-            if (!DYbase::getClass($controllerName)) {
-                DYbase::setClass($controllerName, new $controllerName);
-            }
-            $controller = DYbase::getClass($controllerName);
-            $routes = substr($routes, strlen($controllerRoute) + 1);
-            //如果$routes 为false，则说明URL中不含method
-            if ($routes) {
-                if (strpos($routes, "?")) {
-                    $f = strpos($routes, "?");
-                    $routes = substr($routes, 0, $f);
-                }
-                $methodArray = explode("/", $routes);
-
-                if (method_exists($controller, "action" . $methodArray[0])) {
-                    $method = "action" . $methodArray[0];
-                } else {
-                    showErrors("Can't find the method!");
-                }
-            } else {
-                $method = "action" . DEFAULT_METHOD;
-            }
-            return $controller->$method();
+        $action = substr($routes,strlen($controllerName));
+        if($action){
+            return substr($action,1);
+        }else{
+            return DEFAULT_METHOD;
         }
-
-        showErrors("Run the method wrong!");
-        return false;
     }
 }
