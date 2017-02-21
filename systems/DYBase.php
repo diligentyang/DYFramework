@@ -1,4 +1,5 @@
 <?php
+namespace systems;
 /**
  * DYFrameword DYBase
  * PHP version 5
@@ -28,7 +29,8 @@ class DYBase
      */
     static function init()
     {
-        switch (ENVIRONMENT) {
+        echo "222222";
+        /*switch (ENVIRONMENT) {
         case "dev" :
                 error_reporting(-1);
                 ini_set('display_errors', 1);
@@ -49,7 +51,7 @@ class DYBase
         //load database
         include_once "DYDatabase.php";
         DYBase::setClass("DYDatabase", new DYDatabase());
-        DYRun::run();
+        DYRun::run();*/
     }
 
     /**

@@ -24,9 +24,14 @@ function dd($var)
     exit();
 }
 
-require_once "../config/config.php";
-require "../config/database.php";
-require_once "../systems/DYConstant.php";
-require_once "../systems/DYBASE.php";
-require_once "../systems/autoload.php";
-DYBase::init();
+require_once "../config/config.php"; //配置文件
+require "../config/database.php"; //数据库配置文件
+require_once "../systems/DYConstant.php"; //常量定义
+require_once "../systems/Autoload.php";
+//require_once "../systems/DYBASE.php";
+//require_once "../systems/autoload.php";
+
+spl_autoload_register('\systems\Autoload::loader');
+
+systems\DYBase::init();
+//DYBase::init();
