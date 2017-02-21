@@ -11,8 +11,8 @@ class DYRun
      */
     static public function run()
     {
-        $app = new \systems\DYApp();
-        $app->start();
+       $route = new \systems\Route();
+        //$app->start();
     }
 
 }
