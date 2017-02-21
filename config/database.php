@@ -2,7 +2,7 @@
     defined('ACCESS') OR exit('No direct script access allowed');
 
     //数据库是否可用，默认为false
-    $db['available'] = false;
+    $db['available'] = true;
     //数据库主机
     $db['host'] = "localhost";
     //端口号
