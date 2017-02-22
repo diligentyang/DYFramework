@@ -33,4 +33,7 @@ require_once "../systems/Autoload.php";
 
 spl_autoload_register('\systems\Autoload::loader');
 
+$config = new \lib\Config(BASE_PATH."config");
+var_dump($config['TestConfig']);
+
 systems\DYBase::init();
