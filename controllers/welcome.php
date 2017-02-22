@@ -1,6 +1,6 @@
 <?php
 
-class Welcome extends DYController
+class Welcome 
 {
     public function actionIndex()
     {
