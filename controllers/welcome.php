@@ -1,6 +1,7 @@
 <?php
+namespace controllers;
 
-class Welcome 
+class Welcome extends \systems\DYController
 {
     public function actionIndex()
     {

@@ -1,45 +1,10 @@
 <?php
+namespace systems;
 
-defined("ACCESS") or define("ACCESS", true);
+defined('ACCESS') OR exit('No direct script access allowed');
 
 class DYConModBase
 {
-
-    /**
-     * Get DYDatabase
-     *
-     * @return null|object
-     */
-    public function db()
-    {
-        return DYBase::getClass("DYDatabase");
-    }
-
-    /**
-     * Load hepler class
-     *
-     * @param string $class class name
-     *
-     * @return null
-     */
-    function helper($class)
-    {
-        loadClass("helper", $class);
-        if (is_array($class)) {
-            foreach ($class as $val) {
-                $$val = new $val();
-                if (!DYBase::getClass($val)) {
-                    DYBase::setClass($val, $$val);
-                }
-            }
-        } else {
-            $$class = new $class();
-            if (!DYBase::getClass($class)) {
-                DYBase::setClass($class, $$class);
-            }
-        }
-    }
-
     /**
      * Redirect
      *

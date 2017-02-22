@@ -30,9 +30,8 @@ class DYApp
     public function runController()
     {
         $controller = str_replace("/",DS,Factory::GetRoute()->controller);
-        DYBaseFunc::importFile("controllers".DS.$controller.".php");
-        $arr = explode(DS, $controller);
-        $contro = new $arr[count($arr)-1];
+        $controller = '\\controllers\\'.$controller;
+        $contro = new $controller();
         $action = "action".Factory::GetRoute()->method;
         $contro->$action();
     }
