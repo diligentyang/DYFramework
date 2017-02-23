@@ -49,9 +49,7 @@ class DYController extends DYConModBase
      */
     function view($viewpath, $data = array())
     {
-        foreach ($data as $key => $value) {
-            $$key = isset($data[$key]) ? $value : "";
-        }
+        extract($data);//该函数使用数组键名作为变量名，使用数组键值作为变量值。针对数组中的每个元素，将在当前符号表中创建对应的一个变量。
         $viewpath = trim($viewpath);
         $viewpath = BASE_PATH . "views" . DS . $viewpath;
         if (is_file($viewpath . ".html")) {
@@ -61,7 +59,7 @@ class DYController extends DYConModBase
         } else if (is_file($viewpath . ".php")) {
             include($viewpath . ".php");
         } else {
-            showErrors("Only .php|.html|.htm can be viewed and please check your view path");
+            DYBaseFunc::showErrors("Only .php|.html|.htm can be viewed and please check your view path");
         }
     }
 
