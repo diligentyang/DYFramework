@@ -36,7 +36,8 @@ class Route{
             }
             return rtrim($str_route2,'/');
         }else{
-            return ucfirst(DEFAULT_CONTROLLER).'/'.ucfirst(DEFAULT_METHOD);
+            $config = \systems\Factory::GetConfig();
+            return ucfirst($config['Config']['defalut_controller']).'/'.ucfirst($config['Config']['defalut_method']);
         }
     }
 

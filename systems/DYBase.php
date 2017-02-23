@@ -29,7 +29,8 @@ class DYBase
      */
     static function init()
     {
-        switch (ENVIRONMENT) {
+        $config = \systems\Factory::GetConfig();
+        switch ($config['config']['environment']) {
         case "dev" :
                 error_reporting(-1);
                 ini_set('display_errors', 1);

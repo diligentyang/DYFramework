@@ -14,7 +14,8 @@ class DYApp
      */
     public function start()
     {
-        if (AUTO_START_SESSION) {
+        $config = \systems\Factory::GetConfig();
+        if ($config['Config']['auto_start_session']) {
             if (!session_id()) {
                 session_start();
             }

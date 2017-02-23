@@ -1,23 +1,5 @@
 <?php
 defined('ACCESS') OR exit('No direct script access allowed');
-
-foreach ($config as $value) {
-    if (!$value) {
-        exit("The application config is not set correctly");
-    }
-}
-if ($db['available'] !== false && $db['available'] !== true) {
-    exit("database config avaliable must be true or flase");
-}
-
-//开发环境
-defined("ENVIRONMENT") or define("ENVIRONMENT", $config['environment']);
-//默认控制器
-defined("DEFAULT_CONTROLLER") or define("DEFAULT_CONTROLLER", $config['defalut_controller']);
-//默认方法
-defined("DEFAULT_METHOD") or define("DEFAULT_METHOD", $config['defalut_method']);
-//session开启
-defined("AUTO_START_SESSION") or define("AUTO_START_SESSION", $config['auto_start_session']);
 //目录分隔符
 defined("DS") or define("DS", DIRECTORY_SEPARATOR);
 //根目录 D:\wampserver\www\MyFramework\

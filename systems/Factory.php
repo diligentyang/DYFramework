@@ -30,4 +30,14 @@ class Factory
             return Register::get("DYApp");
         }
     }
+
+    static function GetConfig()
+    {
+        if(Register::get("Config")){
+            return Register::get("Config");
+        }else{
+            Register::set("Config", new \lib\Config(BASE_PATH."config"));
+            return Register::get("Config");
+        }
+    }
 }

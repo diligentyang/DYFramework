@@ -23,17 +23,9 @@ function dd($var)
     echo "</pre>";
     exit();
 }
-
-require_once "../config/config.php"; //配置文件
-require "../config/database.php"; //数据库配置文件
 require_once "../systems/DYConstant.php"; //常量定义
 require_once "../systems/Autoload.php";
-//require_once "../systems/DYBASE.php";
-//require_once "../systems/autoload.php";
-
 spl_autoload_register('\systems\Autoload::loader');
 
-$config = new \lib\Config(BASE_PATH."config");
-var_dump($config['TestConfig']);
 
 systems\DYBase::init();
