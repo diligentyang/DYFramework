@@ -139,9 +139,6 @@ class DYConModBase
     function __call($name, $arguments)
     {
         // TODO: Implement __call() method.
-        if ($name == 'db') {
-            return DYBase::getClass("DYDatabase");
-        }
         echo "你所调用的函数：$name(参数：<br />";
         var_dump($arguments);
         echo ")不存在！";
