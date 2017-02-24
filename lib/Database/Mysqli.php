@@ -11,7 +11,7 @@ class Mysqli implements IDataBase
     private function __construct($dbname, $host, $port,$db_user, $db_pwd, $charset)
     {
         $this->db = mysqli_connect($host, $db_user, $db_pwd, $dbname, $port);
-        $this->db->query("set names $charset");
+        mysqli_query($this->db ,"set names $charset");
     }
 
     public static function getInstance($dbname, $host, $port,$db_user, $db_pwd, $charset)
@@ -23,9 +23,35 @@ class Mysqli implements IDataBase
     }
 
 
-    function query($strSql, $mode)
+    function query($strSql, $mode = "array")
     {
-        // TODO: Implement query() method.
+        $strSql = trim($strSql);
+        if($strSql==""){
+            DYBaseFunc::showErrors("Query cannot be empty!");
+        }
+        $query = mysqli_query($this->db, $strSql);
+        if(!$query){
+           dd("GG");
+        }
+        if (strpos(strtolower($strSql), "select") ===false) {
+            return $query;
+        }
+
+        $res = mysqli_fetch_all($query, MYSQLI_ASSOC);
+//        switch ($mode) {
+//            case 'array' :
+//                $res = $query->fetchAll(\PDO::FETCH_ASSOC);
+//                break;
+//            case 'object' :
+//                $res = $query->fetchAll(\PDO::FETCH_OBJ);
+//                break;
+//            case 'count':
+//                $res = $query->rowCount();
+//                break;
+//            default:
+//                DYBaseFunc::showErrors("SQLERROR: please check your second param!");
+//        }
+        return $res;
     }
 
     function insert($table, $arrayDataValue, $escape)
