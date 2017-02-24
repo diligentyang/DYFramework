@@ -8,5 +8,5 @@ return array(
     'password' => '905407339',
     'database' => 'test',
     'charset' => 'UTF8',
-    'dbdriver' => 'mysqli'
+    'dbdriver' => 'pdo'
 );
