@@ -11,5 +11,6 @@ interface IDataBase
 {
     function query($strSql, $mode);
     function getColumns($table);
-    function insert($table, $arrayDataValue);
+    function insert($table, $arrayDataValue, $escape);
+    function update($table, $arrayDataValue, $where, $escape);
 }

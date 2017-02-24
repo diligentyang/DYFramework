@@ -20,6 +20,16 @@ class Pdo implements IDataBase
         $this->db->exec("set names $charset");
     }
 
+    /**
+     * 获取PDO连接
+     *
+     * @param $dbname 数据库名称
+     * @param $host host
+     * @param $db_user 用户名
+     * @param $db_pwd 密码
+     * @param $charset 编码
+     * @return Pdo|null
+     */
     public static function getInstance($dbname, $host, $db_user, $db_pwd, $charset)
     {
         if(!self::$_instance){
@@ -64,7 +74,15 @@ class Pdo implements IDataBase
         return $res;
     }
 
-    function insert($table, $arrayDataValue, $escape = false)
+    /**
+     * 插入语句
+     *
+     * @param $table 表名字
+     * @param $arrayDataValue 数组
+     * @param bool|false $escape 是否转义
+     * @return int 返回影响行数
+     */
+    function insert($table, $arrayDataValue, $escape = true)
     {
         $this->checkFields($table, array_keys($arrayDataValue));
         if($escape)
@@ -77,6 +95,43 @@ class Pdo implements IDataBase
         return $result;
     }
 
+    /**
+     * 更新操作
+     *
+     * @param $table 表名字
+     * @param $arrayDataValue 数组
+     * @param string $where 条件
+     * @param bool|true $escape 是否转义
+     * @return int 影响行数
+     */
+    function update($table, $arrayDataValue, $where = '', $escape = true)
+    {
+        if($where){
+            $this->checkFields($table, array_keys($arrayDataValue));
+            if($escape)
+            {
+                $arrayDataValue  = $this->addEscape($arrayDataValue);
+            }
+            $strSql = '';
+            foreach ($arrayDataValue as $key => $value) {
+                $strSql .= ", `$key`='$value'";
+            }
+            $strSql = substr($strSql, 1);
+            $strSql = "UPDATE `$table` SET $strSql WHERE $where";
+            $result = $this->db->exec($strSql);
+            $this->getPDOError();
+            return $result;
+        }else{
+            DYBaseFunc::showErrors("SQLERROR: Lack of update condition!");
+        }
+    }
+
+    /**
+     * 转义
+     *
+     * @param $arrayDataValue
+     * @return array
+     */
     private function addEscape($arrayDataValue){
         $arr = array();
         foreach($arrayDataValue as $key => $value)
@@ -86,6 +141,12 @@ class Pdo implements IDataBase
         return $arr;
     }
 
+    /**
+     * 检查栏目名字是否正确
+     *
+     * @param $table
+     * @param $array
+     */
     private function checkFields($table, $array)
     {
         $fields = $this->getColumns($table);
@@ -96,6 +157,12 @@ class Pdo implements IDataBase
         }
     }
 
+    /**
+     * 得到数据库中所有的栏目名字
+     *
+     * @param $table
+     * @return array
+     */
     function getColumns($table)
     {
         $fields = array();

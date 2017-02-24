@@ -33,9 +33,9 @@ $db = \lib\Database\Pdo::getInstance('test', 'localhost', 'root', '905407339', '
 
 $data = array(
     'name'=>'107lab22',
-    'mobile'=>"123456",
+    'mobile'=>"555555",
     'regtime'=>'2017-02-24 10:05:20'
 );
 
-$db->insert("user", $data);
+$db->update("user", $data, "id = 2");
 systems\DYBase::init();
