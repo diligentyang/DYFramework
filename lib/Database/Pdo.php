@@ -64,7 +64,7 @@ class Pdo implements IDataBase
         return $res;
     }
 
-    function insert($table, $arrayDataValue, $escape = true)
+    function insert($table, $arrayDataValue, $escape = false)
     {
         $this->checkFields($table, array_keys($arrayDataValue));
         if($escape)

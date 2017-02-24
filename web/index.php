@@ -33,7 +33,7 @@ $db = \lib\Database\Pdo::getInstance('test', 'localhost', 'root', '905407339', '
 
 $data = array(
     'name'=>'107lab22',
-    'mobile'=>"123'456",
+    'mobile'=>"123456",
     'regtime'=>'2017-02-24 10:05:20'
 );
 
