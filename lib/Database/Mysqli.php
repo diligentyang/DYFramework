@@ -8,6 +8,15 @@ class Mysqli implements IDataBase
     private static $_instance = null;
     private $db;
 
+    /**
+     * Mysqli constructor.
+     * @param $dbname
+     * @param $host
+     * @param $port
+     * @param $db_user
+     * @param $db_pwd
+     * @param $charset
+     */
     private function __construct($dbname, $host, $port,$db_user, $db_pwd, $charset)
     {
         ini_set("display_errors","On");
@@ -19,6 +28,17 @@ class Mysqli implements IDataBase
         mysqli_query($this->db ,"set names $charset");
     }
 
+    /**
+     * 建立连接
+     *
+     * @param $dbname 数据库
+     * @param $host host
+     * @param $port 端口
+     * @param $db_user 用户名
+     * @param $db_pwd 密码
+     * @param $charset 编码
+     * @return Mysqli|null
+     */
     public static function getInstance($dbname, $host, $port,$db_user, $db_pwd, $charset)
     {
         if(!self::$_instance){
@@ -27,7 +47,13 @@ class Mysqli implements IDataBase
         return self::$_instance;
     }
 
-
+    /**
+     * 执行sql语句 select
+     *
+     * @param $strSql
+     * @param string $mode
+     * @return array|bool|int|\mysqli_result|null
+     */
     function query($strSql, $mode = "array")
     {
         $strSql = trim($strSql);
@@ -47,10 +73,13 @@ class Mysqli implements IDataBase
                 $res = mysqli_fetch_all($query, MYSQLI_ASSOC);
                 break;
             case 'object' :
-
+                $res = array();
+                while($r = mysqli_fetch_object($query)){
+                    $res[] = $r;
+                }
                 break;
             case 'count':
-
+                $res = mysqli_num_rows($query);
                 break;
             default:
                 DYBaseFunc::showErrors("SQLERROR: please check your second param!");

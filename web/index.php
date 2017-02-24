@@ -31,6 +31,6 @@ $db = \lib\Factory::GetMySQL();
 //$res = $db->query("select * from user", 'object');
 //dd($res);
 
-dd($db->query("select * from user"));
+dd($db->query("select * from user", "count"));
 
 systems\DYBase::init();
