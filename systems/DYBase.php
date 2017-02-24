@@ -20,13 +20,7 @@ defined('ACCESS') OR exit('No direct script access allowed');
  */
 class DYBase
 {
-    static private $_classmap;
 
-    /**
-     * Initial
-     *
-     * @return null
-     */
     static function init()
     {
         $config = \systems\Factory::GetConfig();
@@ -48,41 +42,6 @@ class DYBase
         }
 
         DYRun::run();
-    }
-
-    /**
-     * To setClass into $_classmap
-     *
-     * @param string $key   classname
-     * @param object $value class object
-     *
-     * @return null
-     */
-    static function setClass($key, $value)
-    {
-        self::$_classmap[$key] = $value;
-    }
-
-    /**
-     * To check the class is exist or not and get the class if it is exist
-     *
-     * @param string $key classname
-     *
-     * @return object|null
-     */
-    static function getClass($key)
-    {
-        return isset(self::$_classmap[$key]) ? self::$_classmap[$key] : null;
-    }
-
-    /**
-     * To get $_classmap
-     *
-     * @return mixed
-     */
-    static function getAllClass()
-    {
-        return self::$_classmap;
     }
 
 
