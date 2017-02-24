@@ -31,6 +31,11 @@ $db = \lib\Factory::GetMySQL();
 //$res = $db->query("select * from user", 'object');
 //dd($res);
 
-dd($db->query("select * from user", "count"));
+$data = array(
+    'name'=>'107lab22',
+    'mobile'=>"555555",
+    'regtime'=>'2017-02-24 10:05:20'
+);
 
+$db->insert('user', $data);
 systems\DYBase::init();

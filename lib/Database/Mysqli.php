@@ -62,7 +62,7 @@ class Mysqli implements IDataBase
         }
         $query = mysqli_query($this->db, $strSql);
         if(!$query){
-            DYBaseFunc::showErrors("错误代码：".mysqli_errno($this->db)." ERROR : ".mysqli_error($this->db));
+            $this->showMysqliError();
         }
         if (strpos(strtolower($strSql), "select") ===false) {
             return $query;
@@ -87,9 +87,27 @@ class Mysqli implements IDataBase
         return $res;
     }
 
-    function insert($table, $arrayDataValue, $escape)
+    /**
+     * 插入语句
+     *
+     * @param $table 表名
+     * @param $arrayDataValue 数据
+     * @param bool|true $escape 是否转义
+     * @return bool|\mysqli_result
+     */
+    function insert($table, $arrayDataValue, $escape = true)
     {
-        // TODO: Implement insert() method.
+        $this->checkFields($table, array_keys($arrayDataValue));
+        if($escape)
+        {
+            $arrayDataValue  = $this->addEscape($arrayDataValue);
+        }
+        $strSql = "INSERT INTO `$table` (`".implode('`,`', array_keys($arrayDataValue))."`) VALUES ('".implode("','", $arrayDataValue)."')";
+        $result = mysqli_query($this->db, $strSql);
+        if(!$result){
+            $this->showMysqliError();
+        }
+        return $result;
     }
 
     function update($table, $arrayDataValue, $where, $escape)
@@ -102,8 +120,59 @@ class Mysqli implements IDataBase
         // TODO: Implement delete() method.
     }
 
+    /**
+     * 获得数据表中所有列名
+     *
+     * @param $table
+     * @return array
+     */
     function getColumns($table)
     {
-        // TODO: Implement getColumns() method.
+        $fields = array();
+        $query = mysqli_query($this->db, "SHOW COLUMNS FROM $table");
+        if(!$query){
+            $this->showMysqliError();
+        }
+        $result = mysqli_fetch_all($query, MYSQLI_ASSOC);
+        foreach ($result as $rows) {
+            $fields[] = $rows['Field'];
+        }
+        return $fields;
+    }
+
+    function showMysqliError()
+    {
+        DYBaseFunc::showErrors("错误代码：".mysqli_errno($this->db)." ERROR : ".mysqli_error($this->db));
+    }
+
+    /**
+     * 转义
+     *
+     * @param $arrayDataValue
+     * @return array
+     */
+    private function addEscape($arrayDataValue){
+        $arr = array();
+        foreach($arrayDataValue as $key => $value)
+        {
+            $arr[$key] = addslashes($value);
+        }
+        return $arr;
+    }
+
+    /**
+     * 检查栏目名字是否正确
+     *
+     * @param $table
+     * @param $array
+     */
+    private function checkFields($table, $array)
+    {
+        $fields = $this->getColumns($table);
+        foreach($array as $key){
+            if(!in_array($key, $fields)){
+                DYBaseFunc::showErrors("SQLERROR : Unknown column `$key` in field list.");
+            }
+        }
     }
 }
