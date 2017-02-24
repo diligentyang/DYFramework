@@ -1,17 +1,11 @@
 <?php
     defined('ACCESS') OR exit('No direct script access allowed');
 
-    //数据库是否可用，默认为false
-    $db['available'] = true;
-    //数据库主机
-    $db['host'] = "localhost";
-    //端口号
-    $db["port"] = "3306";
-    //数据库用户名
-    $db['username'] = "root";
-    //数据库密码
-    $db['password'] = "905407339";
-    //用到的数据库
-    $db['database'] = "test";
-    //数据库编码
-    $db['charset'] = "UTF8";
+return array(
+    'host' => 'localhost',
+    'port' => '3306',
+    'username' => 'root',
+    'password' => '905407339',
+    'database' => 'test',
+    'charset' => 'UTF8'
+);

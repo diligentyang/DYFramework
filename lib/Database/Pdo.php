@@ -15,9 +15,9 @@ class Pdo implements IDataBase
      * @param $db_pwd
      * @param $charset
      */
-    private function __construct($dbname, $host, $db_user, $db_pwd, $charset)
+    private function __construct($dbname, $host, $port,$db_user, $db_pwd, $charset)
     {
-        $dsn = "mysql:host=$host;dbname=$dbname";
+        $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
         try {
             $this->db = new \PDO($dsn, $db_user, $db_pwd);
         } catch (\PDOException $e) {
@@ -38,10 +38,10 @@ class Pdo implements IDataBase
      * @param $charset 编码
      * @return Pdo|null
      */
-    public static function getInstance($dbname, $host, $db_user, $db_pwd, $charset)
+    public static function getInstance($dbname, $host, $port,$db_user, $db_pwd, $charset)
     {
         if(!self::$_instance){
-            self::$_instance = new self($dbname, $host, $db_user, $db_pwd, $charset);
+            self::$_instance = new self($dbname, $host, $port,$db_user, $db_pwd, $charset);
         }
         return self::$_instance;
     }

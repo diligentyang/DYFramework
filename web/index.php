@@ -27,15 +27,10 @@ require_once "../systems/DYConstant.php"; //常量定义
 require_once "../systems/Autoload.php";
 spl_autoload_register('\systems\Autoload::loader');
 
-$db = \lib\Database\Pdo::getInstance('test', 'localhost', 'root', '905407339', 'UTF-8');
+$db = \lib\Factory::GetMySQL();
 //$res = $db->query("select * from user", 'object');
 //dd($res);
 
-$data = array(
-    'name'=>'107lab22',
-    'mobile'=>"555555",
-    'regtime'=>'2017-02-24 10:05:20'
-);
+$db->query("select * from user");
 
-$db->delete("user", "id = 2");
 systems\DYBase::init();

@@ -36,7 +36,7 @@ class Factory
         if(Register::get("Config")){
             return Register::get("Config");
         }else{
-            Register::set("Config", new \lib\Config(BASE_PATH."config"));
+            Register::set("Config", new Config(BASE_PATH."config"));
             return Register::get("Config");
         }
     }

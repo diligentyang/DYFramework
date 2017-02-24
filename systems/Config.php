@@ -1,5 +1,5 @@
 <?php
-namespace lib;
+namespace systems;
 
 class Config implements \ArrayAccess
 {
