@@ -39,7 +39,24 @@ class Pdo implements IDataBase
         if(!$query){
             DYBaseFunc::showErrors("DataBase error : ".$this->getPDOError());
         }
-        dd($query);
+        if (strpos(strtolower($strSql), "select") ===false) {
+            return $query;
+        }
+
+        switch ($mode) {
+            case 'array' :
+                $res = $query->fetchAll(\PDO::FETCH_ASSOC);
+                break;
+            case 'object' :
+                $res = $query->fetchAll(\PDO::FETCH_OBJ);
+                break;
+            case 'count':
+                $res = $query->rowCount();
+                break;
+            default:
+                DYBaseFunc::showErrors("SQLERROR: please check your second param!");
+        }
+        return $res;
 
 
     }

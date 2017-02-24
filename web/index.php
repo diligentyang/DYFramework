@@ -28,5 +28,6 @@ require_once "../systems/Autoload.php";
 spl_autoload_register('\systems\Autoload::loader');
 
 $db = \lib\Database\Pdo::getInstance('test', 'localhost', 'root', '905407339', 'UTF-8');
-$db->query("select * from user");
+$res = $db->query("select * from user", 'object');
+dd($res);
 systems\DYBase::init();
