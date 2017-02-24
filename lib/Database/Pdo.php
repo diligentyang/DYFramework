@@ -7,6 +7,14 @@ class Pdo implements IDataBase
     private static $_instance = null;
     private $db;
 
+    /**
+     * Pdo constructor.
+     * @param $dbname
+     * @param $host
+     * @param $db_user
+     * @param $db_pwd
+     * @param $charset
+     */
     private function __construct($dbname, $host, $db_user, $db_pwd, $charset)
     {
         $dsn = "mysql:host=$host;dbname=$dbname";
