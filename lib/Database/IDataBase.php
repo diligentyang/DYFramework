@@ -13,4 +13,5 @@ interface IDataBase
     function getColumns($table);
     function insert($table, $arrayDataValue, $escape);
     function update($table, $arrayDataValue, $where, $escape);
+    function delete($table, $where);
 }

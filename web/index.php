@@ -37,5 +37,5 @@ $data = array(
     'regtime'=>'2017-02-24 10:05:20'
 );
 
-$db->update("user", $data, "id = 2");
+$db->delete("user", "id = 2");
 systems\DYBase::init();

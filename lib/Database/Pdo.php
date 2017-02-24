@@ -127,6 +127,25 @@ class Pdo implements IDataBase
     }
 
     /**
+     * 删除操作
+     *
+     * @param $table 表名
+     * @param string $where 条件
+     * @return int 影响行数
+     */
+    function delete($table, $where = "")
+    {
+        if ($where == '') {
+            DYBaseFunc::showErrors("'WHERE' is Null");
+        } else {
+            $strSql = "DELETE FROM `$table` WHERE $where";
+            $result = $this->db->exec($strSql);
+            $this->getPDOError();
+            return $result;
+        }
+    }
+
+    /**
      * 转义
      *
      * @param $arrayDataValue
