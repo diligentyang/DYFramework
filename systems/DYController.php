@@ -23,20 +23,14 @@ class DYController extends DYConModBase
      *
      * @return mixed
      */
-    public function model($model)
+    public function model($modelname)
     {
-        $ModelPath = BASE_PATH . "models/" . str_replace("/", DS, $model) . ".php";
-        if (!is_file($ModelPath)) {
-            showErrors("don't find the model!");
+        $model = "models\\".$modelname;
+        if(!$this->getClass($model))
+        {
+            $this->setClass($model, new $model());
         }
-        $arr = explode("/", $model);
-        $ModelName = $arr[count($arr) - 1];
-        include_once "$ModelPath";
-        if (!$this->getClass($ModelName)) {
-            $this->setClass($ModelName, new $ModelName);
-        }
-        $ModelClass = $this->getClass($ModelName);
-        return $ModelClass;
+        return $this->getClass($model);
     }
 
     /**
@@ -71,7 +65,7 @@ class DYController extends DYConModBase
      *
      * @return null
      */
-    function setClass($class, $val)
+    private function setClass($class, $val)
     {
         if (!$this->getClass($class)) {
             self::$_classes[$class] = $val;
@@ -85,7 +79,7 @@ class DYController extends DYConModBase
      *
      * @return mixed
      */
-    function getClass($class)
+    private function getClass($class)
     {
         return isset(self::$_classes[$class]) ? self::$_classes[$class] : null;
     }

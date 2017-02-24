@@ -1,8 +1,9 @@
 <?php
+namespace models;
 
-defined("ACCESS") or define("ACCESS", true);
+defined('ACCESS') OR exit('No direct script access allowed');
 
-Class TestModel extends DYModel
+Class TestModel extends \systems\DYModel
 {
     function __construct()
     {
@@ -12,7 +13,5 @@ Class TestModel extends DYModel
     function testModelMethod()
     {
         echo "testModelMethod";
-        $res=$this->db()->query("select * from user");
-        return $res;
     }
 }

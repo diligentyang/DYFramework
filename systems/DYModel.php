@@ -1,6 +1,7 @@
 <?php
+namespace systems;
 
-defined("ACCESS") or define("ACCESS", true);
+defined('ACCESS') OR exit('No direct script access allowed');
 
 class DYModel extends DYConModBase
 {
