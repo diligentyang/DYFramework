@@ -27,8 +27,6 @@ class Factory
                     \systems\DYBaseFunc::showErrors("CONFIG_ERROR : The SQL driver can only be pdo or mysqli");
             }
 
-
-
             return Register::get("mysql");
         }
     }

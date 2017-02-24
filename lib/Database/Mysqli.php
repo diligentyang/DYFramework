@@ -10,7 +10,12 @@ class Mysqli implements IDataBase
 
     private function __construct($dbname, $host, $port,$db_user, $db_pwd, $charset)
     {
+        ini_set("display_errors","On");
+        error_reporting(E_ERROR | E_PARSE);
         $this->db = mysqli_connect($host, $db_user, $db_pwd, $dbname, $port);
+        if(!$this->db){
+            DYBaseFunc::showErrors("错误代码：".mysqli_connect_errno()." ERROR : ".mysqli_connect_error());
+        }
         mysqli_query($this->db ,"set names $charset");
     }
 
@@ -31,26 +36,25 @@ class Mysqli implements IDataBase
         }
         $query = mysqli_query($this->db, $strSql);
         if(!$query){
-           dd("GG");
+            DYBaseFunc::showErrors("错误代码：".mysqli_errno($this->db)." ERROR : ".mysqli_error($this->db));
         }
         if (strpos(strtolower($strSql), "select") ===false) {
             return $query;
         }
 
-        $res = mysqli_fetch_all($query, MYSQLI_ASSOC);
-//        switch ($mode) {
-//            case 'array' :
-//                $res = $query->fetchAll(\PDO::FETCH_ASSOC);
-//                break;
-//            case 'object' :
-//                $res = $query->fetchAll(\PDO::FETCH_OBJ);
-//                break;
-//            case 'count':
-//                $res = $query->rowCount();
-//                break;
-//            default:
-//                DYBaseFunc::showErrors("SQLERROR: please check your second param!");
-//        }
+        switch ($mode) {
+            case 'array' :
+                $res = mysqli_fetch_all($query, MYSQLI_ASSOC);
+                break;
+            case 'object' :
+
+                break;
+            case 'count':
+
+                break;
+            default:
+                DYBaseFunc::showErrors("SQLERROR: please check your second param!");
+        }
         return $res;
     }
 
