@@ -67,7 +67,10 @@ class Pdo implements IDataBase
     function insert($table, $arrayDataValue)
     {
         $this->checkFields($table, array_keys($arrayDataValue));
-        
+        $strSql = "INSERT INTO `$table` (`".implode('`,`', array_keys($arrayDataValue))."`) VALUES ('".implode("','", $arrayDataValue)."')";
+        $result = $this->db->exec($strSql);
+        $this->getPDOError();
+        return $result;
     }
 
     private function checkFields($table, $array)
