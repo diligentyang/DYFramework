@@ -32,8 +32,8 @@ $db = \lib\Database\Pdo::getInstance('test', 'localhost', 'root', '905407339', '
 //dd($res);
 
 $data = array(
-    'name'=>'107lab',
-    'mobile'=>'123456',
+    'name'=>'107lab22',
+    'mobile'=>"123'456",
     'regtime'=>'2017-02-24 10:05:20'
 );
 

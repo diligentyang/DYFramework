@@ -64,13 +64,26 @@ class Pdo implements IDataBase
         return $res;
     }
 
-    function insert($table, $arrayDataValue)
+    function insert($table, $arrayDataValue, $escape = true)
     {
         $this->checkFields($table, array_keys($arrayDataValue));
+        if($escape)
+        {
+            $arrayDataValue  = $this->addEscape($arrayDataValue);
+        }
         $strSql = "INSERT INTO `$table` (`".implode('`,`', array_keys($arrayDataValue))."`) VALUES ('".implode("','", $arrayDataValue)."')";
         $result = $this->db->exec($strSql);
         $this->getPDOError();
         return $result;
+    }
+
+    private function addEscape($arrayDataValue){
+        $arr = array();
+        foreach($arrayDataValue as $key => $value)
+        {
+            $arr[$key] = addslashes($value);
+        }
+        return $arr;
     }
 
     private function checkFields($table, $array)
