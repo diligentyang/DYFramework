@@ -1,5 +1,6 @@
 <?php
 namespace lib\Database;
+use \systems\DYBaseFunc as DYBaseFunc;
 
 class Pdo implements IDataBase
 {
@@ -11,13 +12,12 @@ class Pdo implements IDataBase
         $dsn = "mysql:host=$host;dbname=$dbname";
         try {
             $this->db = new \PDO($dsn, $db_user, $db_pwd);
-            echo "OK!";
         } catch (\PDOException $e) {
             echo '数据库连接失败' . $e->getMessage();
             exit();
         }
-//        $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-//        $this->db->exec("set names $charset");
+        $this->db->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        $this->db->exec("set names $charset");
     }
 
     public static function getInstance($dbname, $host, $db_user, $db_pwd, $charset)
@@ -29,8 +29,32 @@ class Pdo implements IDataBase
     }
 
 
-    function query()
+    function query($strSql, $mode = "array")
     {
-        echo "执行查询语句";
+        $strSql = trim($strSql);
+        if($strSql==""){
+            DYBaseFunc::showErrors("Query cannot be empty!");
+        }
+        $query = $this->db->query($strSql);
+        if(!$query){
+            DYBaseFunc::showErrors("DataBase error : ".$this->getPDOError());
+        }
+        dd($query);
+
+
     }
+
+    /**
+     * 获取PDO执行的错误
+     *
+     * @return mixed
+     */
+    private function getPDOError()
+    {
+        if ($this->db->errorCode() != '00000') {
+            $arrayError = $this->db->errorInfo();
+            return $arrayError[2];
+        }
+    }
+
 }

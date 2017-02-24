@@ -9,5 +9,5 @@ namespace lib\Database;
  */
 interface IDataBase
 {
-    function query();
+    function query($strSql, $mode);
 }
