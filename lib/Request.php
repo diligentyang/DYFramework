@@ -5,17 +5,17 @@ defined('ACCESS') OR exit('No direct script access allowed');
 
 class Request
 {
-    public function isPost()
+    public static function isPost()
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST' ? true : false;
     }
 
-    public function isGet()
+    public static  function isGet()
     {
         return $_SERVER['REQUEST_METHOD'] === 'GET' ? true : false;
     }
 
-    public function isAjax()
+    public static function isAjax()
     {
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
             strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
@@ -26,17 +26,17 @@ class Request
         }
     }
 
-    public function post($name, $xss = true){
+    public static function post($name, $xss = true){
         $name = $_POST[$name];
         return $xss===true?htmlspecialchars($name) : $name;
     }
 
-    public function get($name, $xss = true){
+    public static function get($name, $xss = true){
         $name = $_GET[$name];
         return $xss===true?htmlspecialchars($name) : $name;
     }
 
-    public function getToken()
+    public static function getToken()
     {
         return substr(md5(uniqid(mt_rand(), true)),0,10);
     }

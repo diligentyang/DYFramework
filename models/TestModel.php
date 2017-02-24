@@ -14,4 +14,9 @@ Class TestModel extends \systems\DYModel
     {
         echo "testModelMethod";
     }
+
+    function aaa()
+    {
+        echo "aaa";
+    }
 }
