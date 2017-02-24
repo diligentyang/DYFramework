@@ -7,5 +7,6 @@ return array(
     'username' => 'root',
     'password' => '905407339',
     'database' => 'test',
-    'charset' => 'UTF8'
+    'charset' => 'UTF8',
+    'dbdriver' => 'mysqli'
 );
