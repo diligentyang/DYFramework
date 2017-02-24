@@ -143,9 +143,25 @@ class Mysqli implements IDataBase
         }
     }
 
+    /**
+     * 删除语句
+     *
+     * @param $table 表名
+     * @param $where 条件
+     * @return bool|\mysqli_result
+     */
     function delete($table, $where)
     {
-        // TODO: Implement delete() method.
+        if ($where == '') {
+            DYBaseFunc::showErrors("'WHERE' is Null");
+        } else {
+            $strSql = "DELETE FROM `$table` WHERE $where";
+            $result = mysqli_query($this->db, $strSql);
+            if(!$result){
+                $this->showMysqliError();
+            }
+            return $result;
+        }
     }
 
     /**
@@ -168,6 +184,11 @@ class Mysqli implements IDataBase
         return $fields;
     }
 
+    /**
+     * 显示错误
+     *
+     * return null
+     */
     function showMysqliError()
     {
         DYBaseFunc::showErrors("错误代码：".mysqli_errno($this->db)." ERROR : ".mysqli_error($this->db));
