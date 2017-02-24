@@ -1,10 +1,13 @@
 <?php
+namespace lib;
 
-defined("ACCESS") or define("ACCESS", true);
+use systems\DYBaseFunc as DYBaseFunc;
+
+defined('ACCESS') OR exit('No direct script access allowed');
 
 class Password
 {
-    public $passwordHashCost = 13;
+    private $passwordHashCost = 13;
     //生成哈希密码
     public function generatePasswordHash($password, $cost = null)
     {
@@ -18,17 +21,17 @@ class Password
         $salt = $this->generateSalt($cost);
         $hash = crypt($password, $salt);
         if (!is_string($hash) || strlen($hash) !== 60) {
-            showErrors('Unknown error occurred while generating hash.');
+            DYBaseFunc::showErrors('Unknown error occurred while generating hash.');
         }
 
         return $hash;
     }
 
-    public function generateSalt($cost)
+    private function generateSalt($cost)
     {
         $cost = (int)$cost;
         if ($cost < 4 || $cost > 31) {
-            showErrors('Cost must be between 4 and 31.');
+            DYBaseFunc::showErrors('Cost must be between 4 and 31.');
         }
         // Get a 20-byte random string
         $rand = $this->generateRandomKey(20);
@@ -40,14 +43,14 @@ class Password
         return $salt;
     }
 
-    public function generateRandomKey($length)
+    private function generateRandomKey($length)
     {
         if (!is_int($length)) {
-            showErrors('First parameter ($length) must be an integer');
+            DYBaseFunc::showErrors('First parameter ($length) must be an integer');
         }
 
         if ($length < 1) {
-            showErrors('First parameter ($length) must be greater than 0');
+            DYBaseFunc::showErrors('First parameter ($length) must be greater than 0');
         }
 
         // always use random_bytes() if it is available
@@ -60,20 +63,20 @@ class Password
                 return $key;
             }
         }
-        showErrors("Unable to generateRandomKey!");
+        DYBaseFunc::showErrors("Unable to generateRandomKey!");
     }
 
     //check 哈希密码
     public function validatePassword($password, $hash)
     {
         if (!is_string($password) || $password === '') {
-            showErrors('Password must be a string and cannot be empty.');
+            DYBaseFunc::showErrors('Password must be a string and cannot be empty.');
         }
         if (!preg_match('/^\$2[axy]\$(\d\d)\$[\.\/0-9A-Za-z]{22}/', $hash, $matches)
             || $matches[1] < 4
             || $matches[1] > 30
         ) {
-            showErrors('Hash is invalid.');
+            DYBaseFunc::showErrors('Hash is invalid.');
         }
 
         if (function_exists("password_verify")) {
@@ -90,7 +93,7 @@ class Password
     }
 
     //慢比较
-    function compareString($test, $hash)
+    private function compareString($test, $hash)
     {
         $testLen = mb_strlen($test, '8bit');
         $hashLen = mb_strlen($hash, '8bit');

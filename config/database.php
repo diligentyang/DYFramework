@@ -1,5 +1,5 @@
 <?php
-    defined('ACCESS') OR exit('No direct script access allowed');
+defined('ACCESS') OR exit('No direct script access allowed');
 
 return array(
     'host' => 'localhost',
