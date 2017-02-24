@@ -110,9 +110,37 @@ class Mysqli implements IDataBase
         return $result;
     }
 
-    function update($table, $arrayDataValue, $where, $escape)
+    /**
+     * 更新语句
+     *
+     * @param $table 表名
+     * @param $arrayDataValue 数组
+     * @param string $where 条件
+     * @param bool|true $escape 是否转义
+     * @return bool|\mysqli_result
+     */
+    function update($table, $arrayDataValue, $where = '', $escape = true)
     {
-        // TODO: Implement update() method.
+        if($where){
+            $this->checkFields($table, array_keys($arrayDataValue));
+            if($escape)
+            {
+                $arrayDataValue  = $this->addEscape($arrayDataValue);
+            }
+            $strSql = '';
+            foreach ($arrayDataValue as $key => $value) {
+                $strSql .= ", `$key`='$value'";
+            }
+            $strSql = substr($strSql, 1);
+            $strSql = "UPDATE `$table` SET $strSql WHERE $where";
+            $result = mysqli_query($this->db, $strSql);
+            if(!$result){
+                $this->showMysqliError();
+            }
+            return $result;
+        }else{
+            DYBaseFunc::showErrors("SQLERROR: Lack of update condition!");
+        }
     }
 
     function delete($table, $where)
