@@ -27,5 +27,6 @@ require_once "../systems/DYConstant.php"; //常量定义
 require_once "../systems/Autoload.php";
 spl_autoload_register('\systems\Autoload::loader');
 
-
+$db = \lib\Database\Pdo::getInstance('test', 'localhost', 'root', '905407339', 'UTF-8');
+var_dump($db);
 systems\DYBase::init();
