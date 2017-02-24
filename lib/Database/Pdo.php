@@ -28,7 +28,13 @@ class Pdo implements IDataBase
         return self::$_instance;
     }
 
-
+    /**
+     * 执行SQL查询语句，或简单执行其他语句
+     *
+     * @param $strSql sql语句
+     * @param string $mode 返回类型
+     * @return array|int|\PDOStatement
+     */
     function query($strSql, $mode = "array")
     {
         $strSql = trim($strSql);
@@ -42,7 +48,6 @@ class Pdo implements IDataBase
         if (strpos(strtolower($strSql), "select") ===false) {
             return $query;
         }
-
         switch ($mode) {
             case 'array' :
                 $res = $query->fetchAll(\PDO::FETCH_ASSOC);
@@ -57,8 +62,35 @@ class Pdo implements IDataBase
                 DYBaseFunc::showErrors("SQLERROR: please check your second param!");
         }
         return $res;
+    }
 
+    function insert($table, $arrayDataValue)
+    {
+        $this->checkFields($table, array_keys($arrayDataValue));
+        
+    }
 
+    private function checkFields($table, $array)
+    {
+        $fields = $this->getColumns($table);
+        foreach($array as $key){
+            if(!in_array($key, $fields)){
+                DYBaseFunc::showErrors("SQLERROR : Unknown column `$key` in field list.");
+            }
+        }
+    }
+
+    function getColumns($table)
+    {
+        $fields = array();
+        $recordset = $this->db->query("SHOW COLUMNS FROM $table");
+        $this->getPDOError();
+        $recordset->setFetchMode(\PDO::FETCH_ASSOC);
+        $result = $recordset->fetchAll();
+        foreach ($result as $rows) {
+            $fields[] = $rows['Field'];
+        }
+        return $fields;
     }
 
     /**

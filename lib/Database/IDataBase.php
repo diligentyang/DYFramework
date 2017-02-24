@@ -10,4 +10,5 @@ namespace lib\Database;
 interface IDataBase
 {
     function query($strSql, $mode);
+    function getColumns($table);
 }
