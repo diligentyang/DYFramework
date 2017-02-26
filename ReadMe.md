@@ -79,3 +79,16 @@ static function loader($fileName)
         }
     }
 ```
+
+## 初始化框架
+
+调用\systems\Factory::GetConfig()工厂方法加载配置文件，并读取其中的environment项，根据设置的值进行相应的错误设置。
+
+其中Config类用工厂方法实例化，并使用注册器模式添加到了全局的树上。
+
+Config类implements 标准库中的ArrayAccess，实现了通过数组的方式加载相应的配置文件，简单灵活。
+
+
+
+
+
