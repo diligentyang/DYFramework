@@ -28,3 +28,8 @@ http://localhost/web/index.php/contro-test/index
 
 
 注：本框架还在开发阶段
+
+# 框架运行流程
+
+入口文件(`/web/index.php`)-->定义常量('/systems/DYConstant.php')-->自动加载类(`/systems/Autoload.php`)-->初始化框架(`systems\DYBase::init()`)-->启动框架创建APP实例(`Factory::GetDYApp()->start();`)-->路由解析(利用工厂方法'Factory::GetRoute()'得到控制器和方法)-->加载控制器('runController')-->返回结果
+
