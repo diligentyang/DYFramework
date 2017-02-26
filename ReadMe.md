@@ -100,7 +100,23 @@ static public function run()
 
 利用简单工厂模式，创建了一个APP实例，执行了其中的start方法，加载控制器，开启session。
 
-## 
+## 路由解析(\systems\Route.php)
+
+GetFormatUrl()通过$routes = $_SERVER['REQUEST_URI'];获取当前的URL路径，然后按着
+
+action/index -> Action控制器下的actionIndex方法
+
+admin/admin-welcome/index -> admin目录下的AdminWelcome控制器下的actionIndex
+
+来格式化字符串，改变大小写，去掉分隔符等。
+
+然后调用GetController()获得控制器名称
+
+GetMethod()获得控制器中的方法名。
+
+
+
+
 
 
 
