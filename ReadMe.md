@@ -88,7 +88,19 @@ static function loader($fileName)
 
 Config类implements 标准库中的ArrayAccess，实现了通过数组的方式加载相应的配置文件，简单灵活。
 
+## 启动框架创建APP实例
 
+```
+static public function run()
+    {
+        //$route = Factory::GetRoute();
+        Factory::GetDYApp()->start();
+    }
+```
+
+利用简单工厂模式，创建了一个APP实例，执行了其中的start方法，加载控制器，开启session。
+
+## 
 
 
 
