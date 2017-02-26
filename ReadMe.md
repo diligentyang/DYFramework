@@ -114,7 +114,13 @@ admin/admin-welcome/index -> admin目录下的AdminWelcome控制器下的actionI
 
 GetMethod()获得控制器中的方法名。
 
+## 加载控制器
 
+通过DYApp生成的APP实例，执行runController()，获取路由解析后获得的控制器和方法，进行实例化，并调用控制器的方法。
+
+## 返回结果
+
+经过上述过程以后就可以简单的执行控制器中的方法，并显示结果了。
 
 
 
