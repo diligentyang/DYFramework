@@ -81,11 +81,12 @@ class Route{
      */
     private function GetMethod($routes,$controllerName)
     {
+        $config = \systems\Factory::GetConfig();
         $action = substr($routes,strlen($controllerName));
         if($action){
             return substr($action,1);
         }else{
-            return DEFAULT_METHOD;
+            return ucfirst($config['Config']['defalut_method']);
         }
     }
 }
