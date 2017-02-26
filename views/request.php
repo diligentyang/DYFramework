@@ -7,7 +7,6 @@
 echo $name;
 var_dump(\lib\Url::siteUrl());
 ?>
-
 <h1>this is view</h1>
 <form action="" method="post">
     <input type="text" name="message">

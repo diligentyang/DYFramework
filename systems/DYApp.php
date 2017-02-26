@@ -6,6 +6,7 @@ defined('ACCESS') OR exit('No direct script access allowed');
 class DYApp
 {
 
+    public static $_classes;
     /**
      * Start app
      *
