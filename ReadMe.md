@@ -84,7 +84,7 @@ static function loader($fileName)
 
 调用\systems\Factory::GetConfig()工厂方法加载配置文件，并读取其中的environment项，根据设置的值进行相应的错误设置。
 
-其中Config类用工厂方法实例化，并使用注册器模式添加到了全局的树上。
+其中Config类用工厂方法实例化，并使用**注册器模式**添加到了全局的树上。
 
 Config类implements 标准库中的ArrayAccess，实现了通过数组的方式加载相应的配置文件，简单灵活。
 
@@ -98,7 +98,7 @@ static public function run()
     }
 ```
 
-利用简单工厂模式，创建了一个APP实例，执行了其中的start方法，加载控制器，开启session。
+利用**简单工厂模式**，创建了一个APP实例，执行了其中的start方法，加载控制器，开启session。
 
 ## 路由解析(\systems\Route.php)
 
@@ -134,11 +134,11 @@ GetMethod()获得控制器中的方法名。
 
 /lib目录下用于存放工具类
 
-比如Database文件夹中是Mysqli和Pdo类，关于这两个类的实现，应用了单例模式，适配器模式，和工厂方法模式。
+比如Database文件夹中是Mysqli和Pdo类，关于这两个类的实现，应用了**单例模式**，**适配器模式**，和**工厂方法模式**。
 
 通过implements IDataBase接口实现了相同的方法，并可以通过\lib\Factory::GetMySQL()根据配置文件来获取数据库实例。
 
-分别使用单例模式(三私一共)防止了数据库多次连接的浪费。
+分别使用**单例模式**(三私一共)防止了数据库多次连接的浪费。
 
 
 
