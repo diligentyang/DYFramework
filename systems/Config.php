@@ -15,7 +15,7 @@ class Config implements \ArrayAccess
     {
         if(empty($this->configs[$key]))
         {
-            $file_path = $this->path.'/'.$key.'.php';
+            $file_path = $this->path.'/'.ucfirst($key).'.php';
             $config = include $file_path;
             $this->configs[$key] = $config;
         }
