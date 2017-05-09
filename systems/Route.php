@@ -86,7 +86,12 @@ class Route{
 			if($action[0] == "/"){
 				$action = substr($action,1);
 			}
-            return substr($action,0,strpos($action,"/"));
+			if(strpos($action,"/")){
+				return substr($action,0,strpos($action,"/"));
+			}else{
+				return $action;
+			}
+            
         }else{
 			$config = \systems\Factory::GetConfig();
             return ucfirst($config['Config']['defalut_method']);
