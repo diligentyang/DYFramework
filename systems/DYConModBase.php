@@ -18,7 +18,24 @@ class DYConModBase
         $uri = BASE_URL . "index.php/" . $route;
         header("Location: " . $uri, true, $http_response_code);
     }
-
+	
+	/**
+	* 获取指定的URL值，比如index.php/admin/index/1/2/3/4
+	* segment(1) = admin;
+	* segment(2) = index;
+	* segment(3) = 1;
+	*/
+	function segment($a = 3)
+    {
+        $route = $_SERVER['REQUEST_URI'];
+		$route = substr($route,strpos($route,"index.php")+10);
+        if (!$route) {
+            showErrors("please check your url!");
+        }
+        $route = explode("/", $route);
+        return $route[$a - 1];
+    }
+	
     /**
      * Encodes special characters into HTML entities.
      *

@@ -32,7 +32,8 @@ class DYBaseFunc{
      */
     static function segment($a = 3)
     {
-        $route = getRouteAll();
+        $route = $_SERVER['REQUEST_URI'];
+		$route = substr($route,strpos($route,"index.php")+10);
         if (!$route) {
             showErrors("please check your url!");
         }
