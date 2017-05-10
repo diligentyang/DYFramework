@@ -86,6 +86,9 @@ class Route{
 			if($action[0] == "/"){
 				$action = substr($action,1);
 			}
+			if(strpos($action,"?")){
+				$action = substr($action,0,strpos($action,"?"));
+			}
 			if(strpos($action,"/")){
 				return substr($action,0,strpos($action,"/"));
 			}else{
