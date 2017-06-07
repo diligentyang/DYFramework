@@ -33,7 +33,7 @@ class DYConModBase
             showErrors("please check your url!");
         }
         $route = explode("/", $route);
-        return $route[$a - 1];
+        return isset($route[$a - 1])?$route[$a - 1]:false;
     }
 	
     /**
