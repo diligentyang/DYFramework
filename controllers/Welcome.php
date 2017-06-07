@@ -36,13 +36,14 @@ EOF;
     }
 
     function actionPagination(){
-        $totalItems = 1000;
-        $itemsPerPage = 50;
-        $currentPage = 1;
-        var_dump($_SERVER);
+        //分页说明https://github.com/jasongrimes/php-paginator
+        $totalItems = 100;
+        $itemsPerPage = 5;
+        //$currentPage = 1;
+        $currentPage = $this->segment(3);
         $urlPattern = SITE_URL.'welcome/pagination/(:num)';
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
-
+        $paginator->setMaxPagesToShow(5);//显示的最多页数
         $this->view("pagination",['paginator'=>$paginator]);
     }
 }

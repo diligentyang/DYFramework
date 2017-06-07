@@ -9,7 +9,7 @@ defined("SYSTEMS_PATH") or define("SYSTEMS_PATH", dirname(__FILE__) . DS);
 //项目名称
 defined("ITEM_NAME") or define("ITEM_NAME", explode(DS, dirname(__FILE__))[count(explode(DS, dirname(__FILE__))) - 2] . DS);
 //项目url根地址 http://localhost/DYFramework/
-defined("BASE_URL") or define("BASE_URL", 'http://' . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "web")));
+defined("BASE_URL") or define("BASE_URL", 'http://' . $_SERVER['SERVER_NAME'] .($_SERVER['SERVER_PORT']==80?"":":".$_SERVER['SERVER_PORT']). substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "web")));
 //index.php及之前的URL路径
-defined("SITE_URL") or define("SITE_URL", 'http://' . $_SERVER['SERVER_NAME'] . substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "web") + 4)."index.php/");
+defined("SITE_URL") or define("SITE_URL", 'http://' . $_SERVER['SERVER_NAME'] .($_SERVER['SERVER_PORT']==80?"":":".$_SERVER['SERVER_PORT']). substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], "web") + 4)."index.php/");
 
