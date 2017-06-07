@@ -20,4 +20,17 @@ class Welcome extends \systems\DYController
         echo $passwd->generatePasswordHash("222222");
         $this->view("request", $data);
     }
+
+    function actionMarkdown()
+    {
+        $markdown =<<<'EOF'
+## h1
+
+- askdljf
+- askldjf
+EOF;
+
+        $parser = new \cebe\markdown\Markdown();
+        echo $parser->parse($markdown);
+    }
 }

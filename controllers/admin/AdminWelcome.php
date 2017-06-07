@@ -3,11 +3,10 @@ namespace controllers\admin;
 
 class AdminWelcome{
 	
-	public function actionindex()
+	public function actionIndex()
 	{
 		echo "Welcome to Admin/AdminWelcome";
 	}
-	
 }
 
 ?>

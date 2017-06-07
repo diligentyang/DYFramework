@@ -7,7 +7,8 @@
         "php": ">=5.5.9",
 		"filp/whoops":"*",
         "monolog/monolog": "^1.22",
-        "symfony/var-dumper":"*"
+        "symfony/var-dumper":"*",
+        "cebe/markdown": "~1.1.1"
     },
     "autoload": {
         "psr-4": {
