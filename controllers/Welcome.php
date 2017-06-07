@@ -1,6 +1,8 @@
 <?php
 namespace controllers;
 
+use JasonGrimes\Paginator;
+
 class Welcome extends \systems\DYController
 {
     public function actionIndex()
@@ -31,5 +33,15 @@ class Welcome extends \systems\DYController
 EOF;
         $parser = new \cebe\markdown\Markdown();
         echo $parser->parse($markdown);
+    }
+
+    function actionPagination(){
+        $totalItems = 1000;
+        $itemsPerPage = 50;
+        $currentPage = 8;
+        $urlPattern = '/foo/page/(:num)';
+        $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
+        echo $paginator;
     }
 }
