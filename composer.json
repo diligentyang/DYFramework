@@ -1,0 +1,11 @@
+{
+    "name": "diligentyang/DYFramework",
+    "description": "The DY Framework.",
+    "keywords": ["framework", "diligentyang","DYFramework"],
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+		"filp/whoops":"*",
+        "monolog/monolog": "^1.22"
+    }
+}
