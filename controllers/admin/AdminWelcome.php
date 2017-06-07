@@ -1,4 +1,6 @@
 <?php
+namespace controllers\admin;
+
 class AdminWelcome{
 	
 	public function actionindex()
