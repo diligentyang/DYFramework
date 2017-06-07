@@ -38,10 +38,11 @@ EOF;
     function actionPagination(){
         $totalItems = 1000;
         $itemsPerPage = 50;
-        $currentPage = 8;
-        $urlPattern = '/foo/page/(:num)';
+        $currentPage = 1;
+        var_dump($_SERVER);
+        $urlPattern = SITE_URL.'welcome/pagination/(:num)';
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 
-        echo $paginator;
+        $this->view("pagination",['paginator'=>$paginator]);
     }
 }
