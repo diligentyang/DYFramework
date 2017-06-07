@@ -1,7 +1,7 @@
 <?php
 namespace controllers;
 
-use JasonGrimes\Paginator;
+use lib\Paginator;
 
 class Welcome extends \systems\DYController
 {
