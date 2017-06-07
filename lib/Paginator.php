@@ -282,11 +282,13 @@ class Paginator
         $html = '<ul class="pagination">';
         if ($this->getPrevUrl()) {
             $html .= '<li><a href="' . $this->getPrevUrl() . '">'. $this->previousText .'</a></li>';
+        }else{
+            $html .= '<li class="disabled"><span>'. $this->previousText .'</span></li>';
         }
 
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
-                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '><a href="javascript:void(0)">' . $page['num'] . '</a></li>';
+                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '><a href="'.$page['url'].'">' . $page['num'] . '</a></li>';
             } else {
                 $html .= '<li class="disabled"><span>' . $page['num'] . '</span></li>';
             }
@@ -294,6 +296,8 @@ class Paginator
 
         if ($this->getNextUrl()) {
             $html .= '<li><a href="' . $this->getNextUrl() . '">'. $this->nextText .'</a></li>';
+        }else{
+            $html .= '<li class="disabled"><span>'. $this->nextText .'</span></li>';
         }
         $html .= '</ul>';
 
