@@ -10,6 +10,7 @@ class Welcome extends \systems\DYController
 
     function actionTest()
     {
+        dump(array(1,2,3,4,5));
         $data = array("id"=>'1',"name"=>'ysy');
 
         $model = $this->model('TestModel');

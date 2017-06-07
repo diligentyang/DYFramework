@@ -6,7 +6,8 @@
     "require": {
         "php": ">=5.5.9",
 		"filp/whoops":"*",
-        "monolog/monolog": "^1.22"
+        "monolog/monolog": "^1.22",
+        "symfony/var-dumper":"*"
     },
     "autoload": {
         "psr-4": {

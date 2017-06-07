@@ -19,6 +19,5 @@ defined("ACCESS") or define("ACCESS", true);
 require_once "../systems/DYConstant.php"; //常量定义
 //require_once "../systems/Autoload.php";
 require_once "../vendor/autoload.php";
-
 //spl_autoload_register('\systems\Autoload::loader');
 systems\DYBase::init();
