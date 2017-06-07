@@ -45,5 +45,6 @@ EOF;
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
         $paginator->setMaxPagesToShow(5);//显示的最多页数
         $this->view("pagination",['paginator'=>$paginator]);
+        echo "当前页".$currentPage;
     }
 }
