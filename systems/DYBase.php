@@ -28,6 +28,9 @@ class DYBase
         case "dev" :
                 error_reporting(-1);
                 ini_set('display_errors', 1);
+//                $whoops = new \Whoops\Run;
+//                $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+//                $whoops->register();
             break;
         case "pro" :
             ini_set('display_errors', 0);

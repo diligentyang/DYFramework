@@ -7,5 +7,13 @@
         "php": ">=5.5.9",
 		"filp/whoops":"*",
         "monolog/monolog": "^1.22"
+    },
+    "autoload": {
+        "psr-4": {
+            "systems\\": "systems/",
+            "controllers\\":"controllers/",
+            "models\\":"models/",
+            "lib\\":"lib/"
+        }
     }
 }
