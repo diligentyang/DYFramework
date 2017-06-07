@@ -29,7 +29,6 @@ class Welcome extends \systems\DYController
 - askdljf
 - askldjf
 EOF;
-
         $parser = new \cebe\markdown\Markdown();
         echo $parser->parse($markdown);
     }
