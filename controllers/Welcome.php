@@ -181,8 +181,11 @@ EOF;
     function actionValidate()
     {
         if(\lib\Request::isPost()){
+            //设置错误提示语言，详见语言列表:vlucas/calitron/lang
+//            $lang = 'zh-cn';
+//            \Valitron\Validator::lang($lang);
             $v = new \Valitron\Validator(\lib\Request::post());
-            $v->rule('required', ['username','email'])->message("{field}不能为空");
+            $v->rule('required', ['username','email'])->message(" {field}不能为空");
             $v->rule('lengthBetween','username',3,6)->message("{field}必须为3-6个字符");
             $v->rule('email', 'email')->message("{field}格式不正确");
             $v->labels(array(
