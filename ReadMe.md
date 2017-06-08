@@ -1,3 +1,13 @@
+# 安装
+
+git clone https://github.com/diligentyang/DYFramework.git
+
+composer install
+
+#目录结构
+
+cache 模板缓存文件
+
 config 配置文件
 
 controllers 控制器
@@ -7,6 +17,8 @@ lib  工具类及用户扩展目录
 models 模型
 
 systems 框架核心文件
+
+vendor 依赖扩展及自动加载
 
 views 视图
 
@@ -80,6 +92,8 @@ static function loader($fileName)
     }
 ```
 
+现在已经升级为 composer 自动加载
+
 ## 初始化框架
 
 调用\systems\Factory::GetConfig()工厂方法加载配置文件，并读取其中的environment项，根据设置的值进行相应的错误设置。
@@ -140,7 +154,33 @@ GetMethod()获得控制器中的方法名。
 
 分别使用**单例模式**(三私一共)防止了数据库多次连接的浪费。
 
+# 加载视图
 
+提供了两种模式
+
+一种是直接在控制器中 `$this->view('example',$data)` ，会加载 views/example.php|.html|.htm，$data为一个数组 。
+另一种是用laravel的blade模板引擎，例如`$this->RenderView("hello",$data);`，会加载views/hello.balde.php
+
+关于模板引擎的详细用法：https://docs.golaravel.com/docs/5.1/blade/
+
+# 分页类
+
+```
+use lib\Paginator;
+```
+
+```
+//分页说明https://github.com/jasongrimes/php-paginator
+$totalItems = 100;
+$itemsPerPage = 5;
+//$currentPage = 1;
+$currentPage = $this->segment(3) ? $this->segment(3) : 1;//当前页
+$urlPattern = SITE_URL.'welcome/pagination/(:num)';//url
+$paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+$paginator->setMaxPagesToShow(5);//显示的最多页数
+$this->view("pagination",['paginator'=>$paginator]);
+echo "当前页".$currentPage;
+```
 
 
 
