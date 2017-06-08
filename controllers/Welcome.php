@@ -115,4 +115,9 @@ EOF;
         }
         $this->view("upload");
     }
+
+    function actionGetip()
+    {
+        dump(\lib\Request::ip(0));
+    }
 }
