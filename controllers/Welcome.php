@@ -125,6 +125,9 @@ EOF;
     //表单验证
     function actionValidate()
     {
-        
+        if(\lib\Request::isPost()){
+            dump(\lib\Request::post());
+        }
+        $this->view("validate");
     }
 }

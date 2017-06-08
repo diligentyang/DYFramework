@@ -26,14 +26,24 @@ class Request
         }
     }
 
-    public static function post($name, $xss = true){
-        $name = $_POST[$name];
-        return $xss===true?htmlspecialchars($name) : $name;
+    public static function post($name = null, $xss = true){
+        if($name){
+            $name = $_POST[$name];
+            return $xss===true?htmlspecialchars($name) : $name;
+        }else{
+            return $_POST;
+        }
+
     }
 
-    public static function get($name, $xss = true){
-        $name = $_GET[$name];
-        return $xss===true?htmlspecialchars($name) : $name;
+    public static function get($name = null, $xss = true){
+        if($name){
+            $name = $_GET[$name];
+            return $xss===true?htmlspecialchars($name) : $name;
+        }else{
+            return $_GET;
+        }
+
     }
 
     public static function getToken()
