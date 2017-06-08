@@ -57,7 +57,7 @@ class DYController extends DYConModBase
         }
     }
 
-    function RenderView($view = null, $data = null){
+    function RenderView($view = null, $data = array()){
         if($view == null){
             DYBaseFunc::showErrors("Only .php|.html|.htm can be viewed and please check your view path");
         }
@@ -65,9 +65,10 @@ class DYController extends DYConModBase
         $cachePath = BASE_PATH.'cache';     // 编译文件缓存目录
         $compiler = new \Xiaoler\Blade\Compilers\BladeCompiler($cachePath);
         // 如过有需要，你可以添加自定义关键字
+        /*
         $compiler->directive('datetime', function($timestamp) {
             return preg_replace('/(\(\d+\))/', '<?php echo date("Y-m-d H:i:s", $1); ?>', $timestamp);
-        });
+        });*/
         $engine = new \Xiaoler\Blade\Engines\CompilerEngine($compiler);
         $finder = new \Xiaoler\Blade\FileViewFinder($path);
         // 如果需要添加自定义的文件扩展，使用以下方法
