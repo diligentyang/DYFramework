@@ -126,7 +126,15 @@ EOF;
     function actionValidate()
     {
         if(\lib\Request::isPost()){
-            dump(\lib\Request::post());
+            $v = new \Valitron\Validator(\lib\Request::post());
+            $v->rule('required', ['username','email'])->message("{field}不能为空");
+            $v->rule('email', 'email')->message("邮箱格式不正确");
+            if($v->validate()) {
+                echo "Yay! We're all good!";
+            } else {
+                // Errors
+                dump($v->errors());
+            }
         }
         $this->view("validate");
     }
