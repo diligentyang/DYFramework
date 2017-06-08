@@ -128,7 +128,11 @@ EOF;
         if(\lib\Request::isPost()){
             $v = new \Valitron\Validator(\lib\Request::post());
             $v->rule('required', ['username','email'])->message("{field}不能为空");
-            $v->rule('email', 'email')->message("邮箱格式不正确");
+            $v->rule('email', 'email')->message("{field}格式不正确");
+            $v->labels(array(
+                'username' => '用户名',
+                'email' => '邮箱'
+            ));
             if($v->validate()) {
                 echo "Yay! We're all good!";
             } else {
