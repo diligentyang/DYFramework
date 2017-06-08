@@ -60,18 +60,7 @@ EOF;
 
     function actionBlade()
     {
-        $path = [BASE_PATH.'views'];         // 视图文件目录，这是数组，可以有多个目录
-        $cachePath = BASE_PATH.'cache';     // 编译文件缓存目录
-
-        $compiler = new \Xiaoler\Blade\Compilers\BladeCompiler($cachePath);
-
-        $engine = new \Xiaoler\Blade\Engines\CompilerEngine($compiler);
-        $finder = new \Xiaoler\Blade\FileViewFinder($path);
-
-// 实例化 Factory
-        $factory = new \Xiaoler\Blade\Factory($engine, $finder);
-
-// 渲染视图并输出
-        echo $factory->make('hello', ['a' => 1, 'b' => 2])->render();
+        $data = ['a'=>1,'b'=>2];
+        $this->RenderView("hello",$data);
     }
 }
