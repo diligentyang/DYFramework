@@ -47,4 +47,14 @@ EOF;
         $this->view("pagination",['paginator'=>$paginator]);
         echo "当前页".$currentPage;
     }
+
+    //验证码
+    function actionCaptcha(){
+        $builder = new \Gregwar\Captcha\CaptchaBuilder;
+        $builder->build();
+//        $cap = $builder->getPhrase();
+//        echo $cap;
+        header('Content-type: image/jpeg');
+        $builder->output();
+    }
 }
