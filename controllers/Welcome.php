@@ -10,6 +10,7 @@ class Welcome extends \systems\DYController
         $this->view("index");
     }
 
+    //模型及工具类测试
     function actionTest()
     {
         dump(array(1,2,3,4,5));
@@ -23,6 +24,7 @@ class Welcome extends \systems\DYController
         $this->view("request", $data);
     }
 
+    //markdown to HTML
     function actionMarkdown()
     {
         $markdown =<<<'EOF'
@@ -35,6 +37,7 @@ EOF;
         echo $parser->parse($markdown);
     }
 
+    //分页
     function actionPagination(){
         //分页说明https://github.com/jasongrimes/php-paginator
         $totalItems = 100;
@@ -58,6 +61,7 @@ EOF;
         $builder->output();
     }
 
+    //模板引擎
     function actionBlade()
     {
         $data = ['a'=>1,'b'=>2];
