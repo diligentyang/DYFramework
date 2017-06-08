@@ -71,4 +71,5 @@ class Request
         $clientIp = $long ? [$ip, $long] : ["0.0.0.0", 0];
         return $clientIp[$type];
     }
+
 }

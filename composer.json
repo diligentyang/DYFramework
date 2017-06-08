@@ -12,7 +12,8 @@
         "swiftmailer/swiftmailer": "^5.4",
         "gregwar/captcha": "1.*",
         "xiaoler/blade": "^0.3.1",
-        "codeguy/upload": "*"
+        "codeguy/upload": "*",
+        "vlucas/valitron":"*"
     },
     "autoload": {
         "psr-4": {

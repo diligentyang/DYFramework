@@ -116,8 +116,15 @@ EOF;
         $this->view("upload");
     }
 
+    //获取客户端ip
     function actionGetip()
     {
         dump(\lib\Request::ip(0));
+    }
+
+    //表单验证
+    function actionValidate()
+    {
+        
     }
 }
