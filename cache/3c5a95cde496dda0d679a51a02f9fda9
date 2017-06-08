@@ -1,0 +1,14 @@
+<?php $__env->startSection('title', '页面标题'); ?>
+
+<?php $__env->startSection('sidebar'); ?>
+    @parent
+
+    <p>这边会附加在主要的侧边栏。</p>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <p>这是我的主要内容。</p>
+    <?php echo e($a); ?>,<?php echo e($b); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

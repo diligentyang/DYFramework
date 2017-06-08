@@ -10,7 +10,8 @@
         "symfony/var-dumper":"*",
         "cebe/markdown": "~1.1.1",
         "swiftmailer/swiftmailer": "^5.4",
-        "gregwar/captcha": "1.*"
+        "gregwar/captcha": "1.*",
+        "xiaoler/blade": "^0.3.1"
     },
     "autoload": {
         "psr-4": {
