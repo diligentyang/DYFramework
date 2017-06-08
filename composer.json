@@ -11,7 +11,8 @@
         "cebe/markdown": "~1.1.1",
         "swiftmailer/swiftmailer": "^5.4",
         "gregwar/captcha": "1.*",
-        "xiaoler/blade": "^0.3.1"
+        "xiaoler/blade": "^0.3.1",
+        "codeguy/upload": "*"
     },
     "autoload": {
         "psr-4": {
