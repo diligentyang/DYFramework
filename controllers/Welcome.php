@@ -52,6 +52,24 @@ EOF;
     }
 
     //验证码
+    /*
+     *  You can then save it to a file :
+
+            <?php
+
+            $builder->save('out.jpg');
+
+            Or output it directly :
+
+            <?php
+
+            header('Content-type: image/jpeg');
+            $builder->output();
+
+            Or inline it directly in the HTML page:
+
+            <img src="<?php echo $builder->inline(); ?>" />
+     */
     function actionCaptcha(){
         $builder = new \Gregwar\Captcha\CaptchaBuilder;
         $builder->build();
