@@ -13,7 +13,8 @@
         "gregwar/captcha": "1.*",
         "xiaoler/blade": "^0.3.1",
         "codeguy/upload": "*",
-        "vlucas/valitron":"*"
+        "vlucas/valitron":"*",
+        "ezyang/htmlpurifier": "^4.9"
     },
     "autoload": {
         "psr-4": {
