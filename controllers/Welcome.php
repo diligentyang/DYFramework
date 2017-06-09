@@ -215,6 +215,13 @@ EOF;
         $config->set('HTML.Allowed', 'h1,a[href]');//保留超链接标签a及其href链接地址属性，还有h1标签
         $config->set('HTML.TargetBlank', true);//并自动添加target属性值为’_blank’
         //输出<h1><a href="http://www.baidu.com" target="_blank" rel="noreferrer noopener">Hello</a></h1>
+        /*
+         * // 让文本自动添加段落标签，前提是必须允许P标签的使用
+            $config->set('HTML.Allowed', 'p');
+            $config->set('AutoFormat.AutoParagraph', true);
+            // 清除空标签
+            $config->set('AutoFormat.RemoveEmpty', true);
+         */
         $purifier = new \HTMLPurifier($config);
         $clean_html = $purifier->purify($dirty_html);
         dump($clean_html);
