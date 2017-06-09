@@ -201,4 +201,17 @@ EOF;
         }
         $this->view("validate");
     }
+
+    //过滤xss
+    function actionHtmlpurifer()
+    {
+        $dirty_html=<<<EOF
+<h1>Hello
+<script>alert("world");</script>
+EOF;
+        $config = \HTMLPurifier_Config::createDefault();
+        $purifier = new \HTMLPurifier($config);
+        $clean_html = $purifier->purify($dirty_html);
+        dump($clean_html);
+    }
 }
