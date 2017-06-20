@@ -29,7 +29,8 @@ class Autoload
                 include $file;
                 self::$classMap[$fileName] = $fileName;
             }else{
-                ;echo "请检查所引用类".$fileName."的命名空间是否正确";exit();
+                //echo "请检查所引用类".$fileName."的命名空间是否正确";exit();
+                return false;
             }
         }
     }
